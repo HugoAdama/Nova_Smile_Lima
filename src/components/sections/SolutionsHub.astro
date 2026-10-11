@@ -1,6 +1,7 @@
 ---
 import Icon from '../common/Icon.astro';
 import SectionHeader from '../common/SectionHeader.astro';
+import { getAssetPath } from '../../utils/path';
 
 const specialtyTabs = [
   {
@@ -10,7 +11,7 @@ const specialtyTabs = [
     title: 'Estética Dental Mínimamente Invasiva',
     subtitle: 'Micro-carillas cerámicas de estratificación natural y diseño digital biomimético.',
     description: 'Buscamos la armonía real de tu sonrisa sin dientes artificiales, planos ni blancos fosforescentes. Preservamos más del 90% del esmalte dental sano con maquetas previas (mockup) probadas en tu propia boca antes de cualquier procedimiento.',
-    image: '/images/smile-natural.jpg',
+    image: getAssetPath('/images/smile-natural.jpg'),
     imageAlt: 'Macrofotografía clínica de sonrisa estética biomimética en Nova Smile Lima',
     doctor: 'Dra. Valeria Montes (COP 28419)',
     duration: '2 a 3 citas con maqueta previa',
@@ -29,7 +30,7 @@ const specialtyTabs = [
     title: 'Alineadores Transparentes para Adultos',
     subtitle: 'Alineación de alta precisión adaptada a tu agenda profesional y social.',
     description: 'Placas transparentes removibles diseñadas por software 3D. Te permiten hablar, comer y asistir a reuniones con total naturalidad, mientras realizas tu higiene diaria sin la incomodidad ni las llagas de los brackets tradicionales.',
-    image: '/images/doctor-camila.jpg',
+    image: getAssetPath('/images/doctor-camila.jpg'),
     imageAlt: 'Dra. Camila Ferrer sosteniendo alineador transparente en Nova Smile Lima',
     doctor: 'Dra. Camila Ferrer (COP 34512 / RNE 02210)',
     duration: 'De 6 a 14 meses según planificación virtual 3D',
@@ -48,7 +49,7 @@ const specialtyTabs = [
     title: 'Implantes Guiados por Tomografía Computarizada',
     subtitle: 'Planificación volumétrica 3D para una colocación milimétrica y segura.',
     description: 'Colocación de implantes de titanio y coronas de circonio asistida por férulas quirúrgicas impresas en 3D. Esta tecnología reduce drásticamente el tiempo de intervención, elimina incisiones innecesarias y favorece una recuperación postoperatoria serena.',
-    image: '/images/scanner-tech.jpg',
+    image: getAssetPath('/images/scanner-tech.jpg'),
     imageAlt: 'Planificación 3D y escáner digital en consultorio de Nova Smile Lima',
     doctor: 'Dr. Andrés Salazar (COP 31904 / RNE 01895)',
     duration: 'Procedimiento guiado en 40 - 60 minutos',
@@ -67,7 +68,7 @@ const specialtyTabs = [
     title: 'Odontología General & Profilaxis Ultrasónica',
     subtitle: 'Limpiezas profundas, control periodontal y restauraciones biológicas.',
     description: 'El pilar fundamental de Nova Smile Lima. Limpiezas ultrasónicas con micromotor suave, eliminación de manchas por café o té y control minucioso de caries con magnificación óptica. Diseñado para personas que valoran la salud preventiva en un ambiente sereno.',
-    image: '/images/hero-clinic.jpg',
+    image: getAssetPath('/images/hero-clinic.jpg'),
     imageAlt: 'Consultorio boutique relajante en San Isidro para atención preventiva',
     doctor: 'Equipo de Especialistas Colegiados Nova Smile Lima',
     duration: '45 a 60 minutos por sesión',

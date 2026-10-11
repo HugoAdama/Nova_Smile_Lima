@@ -1,6 +1,7 @@
 ---
 import Icon from '../common/Icon.astro';
 import Badge from '../common/Badge.astro';
+import { getAssetPath } from '../../utils/path';
 ---
 
 <section class="hero" aria-labelledby="hero-titulo">
@@ -44,7 +45,7 @@ import Badge from '../common/Badge.astro';
       <div class="hero__visual-aura" aria-hidden="true"></div>
       <div class="hero__visual-marco">
         <img
-          src="/images/hero-clinic.jpg"
+          src={getAssetPath('/images/hero-clinic.jpg')}
           alt="Consultorio dental boutique de Nova Smile Lima en San Isidro con iluminación natural y equipo 3D de vanguardia"
           width="800"
           height="1000"

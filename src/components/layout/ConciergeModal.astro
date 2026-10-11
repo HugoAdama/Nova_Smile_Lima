@@ -1,6 +1,7 @@
 ---
 import Icon from '../common/Icon.astro';
 import { siteConfig } from '../../data/site';
+import { getAssetPath } from '../../utils/path';
 ---
 
 <div class="concierge-widget" id="concierge-widget">
@@ -125,12 +126,12 @@ import { siteConfig } from '../../data/site';
     <!-- Pie del Panel: Accesos Rápidos -->
     <div class="concierge-footer">
       <div class="concierge-footer__links">
-        <a href="/#contacto" class="concierge-footer__link" id="concierge-link-cita">
+        <a href={getAssetPath('/#contacto')} class="concierge-footer__link" id="concierge-link-cita">
           <Icon name="calendar" size={14} />
           <span>Formulario de Citas</span>
         </a>
         <span class="concierge-footer__sep">·</span>
-        <a href="/libro-de-reclamaciones" class="concierge-footer__link">
+        <a href={getAssetPath('/libro-de-reclamaciones')} class="concierge-footer__link">
           <Icon name="book" size={14} />
           <span>Libro de Reclamaciones</span>
         </a>

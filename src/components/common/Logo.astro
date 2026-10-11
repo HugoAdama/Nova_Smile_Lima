@@ -1,13 +1,16 @@
 ---
+import { getAssetPath } from '../../utils/path';
+
 interface Props {
   variant?: 'light' | 'dark';
   class?: string;
 }
 
 const { variant = 'dark', class: className = '' } = Astro.props;
+const homeUrl = getAssetPath('/');
 ---
 
-<a href="/" class:list={['logo', `logo--${variant}`, className]} aria-label="Nova Smile Lima, inicio">
+<a href={homeUrl} class:list={['logo', `logo--${variant}`, className]} aria-label="Nova Smile Lima, inicio">
   <svg class="logo__simbolo" viewBox="0 0 48 48" aria-hidden="true" width="42" height="42">
     <circle cx="24" cy="24" r="22.5" fill="none" stroke="#C6A15B" stroke-width="1.2" />
     <path

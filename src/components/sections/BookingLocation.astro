@@ -4,6 +4,7 @@ import SectionHeader from '../common/SectionHeader.astro';
 import { siteConfig } from '../../data/site';
 import { treatments } from '../../data/treatments';
 import { faqs } from '../../data/faqs';
+import { getAssetPath } from '../../utils/path';
 
 const categories = [
   { id: 'todos', label: 'Todas' },
@@ -41,7 +42,7 @@ const waFastTrackUrl = `https://wa.me/${siteConfig.contact.whatsappClean}?text=$
 
         <div class="sede-foto-wrap">
           <img
-            src="/images/lounge-reception.jpg"
+            src={getAssetPath('/images/lounge-reception.jpg')}
             alt="Lounge de recepción de Nova Smile Lima en San Isidro"
             width="750"
             height="460"
@@ -199,7 +200,7 @@ const waFastTrackUrl = `https://wa.me/${siteConfig.contact.whatsappClean}?text=$
           <div class="consentimiento">
             <input type="checkbox" id="consentimiento" name="consentimiento" required />
             <label for="consentimiento">
-              Acepto el tratamiento de mis datos personales según la <a href="/politica-privacidad" target="_blank">Ley N° 29733 de Protección de Datos Personales del Perú</a>.
+              Acepto el tratamiento de mis datos personales según la <a href={getAssetPath('/politica-privacidad')} target="_blank">Ley N° 29733 de Protección de Datos Personales del Perú</a>.
             </label>
           </div>
 

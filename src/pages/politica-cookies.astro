@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/common/Icon.astro';
+import { getAssetPath } from '../utils/path';
 ---
 
 <Layout
@@ -10,7 +11,7 @@ import Icon from '../components/common/Icon.astro';
   <div class="legal-page">
     <header class="legal-hero">
       <div class="contenedor">
-        <a href="/" class="legal-hero__volver">
+        <a href={getAssetPath('/')} class="legal-hero__volver">
           <Icon name="arrow-left" size={16} />
           <span>Volver al inicio</span>
         </a>

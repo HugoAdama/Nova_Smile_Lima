@@ -3,6 +3,7 @@ import Logo from '../common/Logo.astro';
 import Icon from '../common/Icon.astro';
 import { siteConfig } from '../../data/site';
 import { footerClinicLinks, footerLegalLinks } from '../../data/navigation';
+import { getAssetPath } from '../../utils/path';
 ---
 
 <footer class="footer" id="pie-pagina" aria-label="Pie de página de Nova Smile Lima">
@@ -132,13 +133,13 @@ import { footerClinicLinks, footerLegalLinks } from '../../data/navigation';
 
         <ul class="footer__legal-destacado">
           <li>
-            <a href="/libro-de-reclamaciones" class="footer__legal-chip">
+            <a href={getAssetPath('/libro-de-reclamaciones')} class="footer__legal-chip">
               <Icon name="book" size={14} class="footer__icono-oro" />
               <span>Libro de Reclamaciones Virtual</span>
             </a>
           </li>
           <li>
-            <a href="/politica-privacidad" class="footer__legal-chip">
+            <a href={getAssetPath('/politica-privacidad')} class="footer__legal-chip">
               <Icon name="shield" size={13} class="footer__icono-oro" />
               <span>Protección de Datos (Ley N° 29733)</span>
             </a>
@@ -154,16 +155,16 @@ import { footerClinicLinks, footerLegalLinks } from '../../data/navigation';
           &copy; 2026 {siteConfig.name} · San Isidro, Lima · COP 28419 · RUC 20608945231
         </p>
         <p class="footer__credito">
-          Landing Page desarrollada por <strong class="footer__credito-autor">Hugo Adama</strong>
+          Landing Page desarrollada por <a href="https://github.com/HugoAdama/Nova_Smile_Lima" target="_blank" rel="noopener noreferrer" class="footer__credito-link" title="Ver repositorio en GitHub"><strong class="footer__credito-autor">Hugo Adama</strong></a>
         </p>
       </div>
 
       <div class="footer__legal-der">
-        <a href="/politica-privacidad">Privacidad</a>
+        <a href={getAssetPath('/politica-privacidad')}>Privacidad</a>
         <span class="footer__separador">·</span>
-        <a href="/politica-cookies">Cookies</a>
+        <a href={getAssetPath('/politica-cookies')}>Cookies</a>
         <span class="footer__separador">·</span>
-        <a href="/libro-de-reclamaciones" class="footer__reclamaciones">
+        <a href={getAssetPath('/libro-de-reclamaciones')} class="footer__reclamaciones">
           <Icon name="book" size={14} />
           <span>Libro de Reclamaciones</span>
         </a>
@@ -460,8 +461,21 @@ import { footerClinicLinks, footerLegalLinks } from '../../data/navigation';
     font-family: var(--f-acento);
   }
 
-  .footer__credito-autor {
+  .footer__credito-link {
     color: var(--oro);
+    text-decoration: none;
+    transition: color var(--trans-rapida), opacity var(--trans-rapida);
+    display: inline-block;
+  }
+
+  .footer__credito-link:hover {
+    color: var(--oro-claro, #E5C378);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .footer__credito-autor {
+    color: inherit;
     font-weight: 600;
   }
 

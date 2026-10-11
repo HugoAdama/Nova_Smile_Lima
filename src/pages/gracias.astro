@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/common/Icon.astro';
 import { siteConfig } from '../data/site';
+import { getAssetPath } from '../utils/path';
 ---
 
 <Layout
@@ -39,7 +40,7 @@ import { siteConfig } from '../data/site';
         </div>
 
         <div class="gracias-acciones">
-          <a class="btn btn--oro" href="/">
+          <a class="btn btn--oro" href={getAssetPath('/')}>
             <span>Volver a la página principal</span>
           </a>
           <a

@@ -1,5 +1,6 @@
 ---
 import Icon from '../common/Icon.astro';
+import { getAssetPath } from '../../utils/path';
 ---
 
 <div id="cookie-banner" class="cookie-banner" role="region" aria-label="Consentimiento de cookies" hidden>
@@ -7,7 +8,7 @@ import Icon from '../common/Icon.astro';
     <div class="cookie-banner__texto">
       <Icon name="shield" size={24} class="cookie-banner__icono" />
       <p>
-        Utilizamos cookies técnicas y analíticas para optimizar tu experiencia y analizar el tráfico de forma anónima, en cumplimiento con la <strong>Ley N° 29733</strong> de Protección de Datos Personales del Perú. Puedes consultar nuestra <a href="/politica-cookies">Política de Cookies</a> y <a href="/politica-privacidad">Aviso de Privacidad</a>.
+        Utilizamos cookies técnicas y analíticas para optimizar tu experiencia y analizar el tráfico de forma anónima, en cumplimiento con la <strong>Ley N° 29733</strong> de Protección de Datos Personales del Perú. Puedes consultar nuestra <a href={getAssetPath('/politica-cookies')}>Política de Cookies</a> y <a href={getAssetPath('/politica-privacidad')}>Aviso de Privacidad</a>.
       </p>
     </div>
     <div class="cookie-banner__acciones">

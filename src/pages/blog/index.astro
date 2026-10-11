@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import Icon from '../../components/common/Icon.astro';
 import SectionHeader from '../../components/common/SectionHeader.astro';
 import { blogPosts } from '../../data/blog';
+import { getAssetPath } from '../../utils/path';
 ---
 
 <Layout
@@ -12,7 +13,7 @@ import { blogPosts } from '../../data/blog';
   <div class="blog-page">
     <header class="blog-hero">
       <div class="contenedor">
-        <a href="/" class="blog-hero__volver">
+        <a href={getAssetPath('/')} class="blog-hero__volver">
           <Icon name="arrow-left" size={16} />
           <span>Volver al inicio</span>
         </a>
@@ -65,7 +66,7 @@ import { blogPosts } from '../../data/blog';
               <h3>¿Tienes dudas sobre un tratamiento en específico?</h3>
               <p>Agenda una evaluación 3D en San Isidro y nuestro equipo te explicará todas las opciones para tu caso.</p>
             </div>
-            <a class="btn btn--oro" href="/#agenda">
+            <a class="btn btn--oro" href={getAssetPath('/#agenda')}>
               <Icon name="calendar" size={18} />
               <span>Reserva tu evaluación</span>
             </a>

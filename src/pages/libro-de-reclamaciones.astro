@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/common/Icon.astro';
 import { siteConfig } from '../data/site';
+import { getAssetPath } from '../utils/path';
 ---
 
 <Layout
@@ -11,7 +12,7 @@ import { siteConfig } from '../data/site';
   <div class="reclamaciones-pagina">
     <div class="contenedor contenedor--estrecho">
       <div class="reclamaciones-header">
-        <a href="/" class="reclamaciones-volver">
+        <a href={getAssetPath('/')} class="reclamaciones-volver">
           <Icon name="arrow-left" size={16} />
           <span>Volver al inicio</span>
         </a>
@@ -173,7 +174,7 @@ import { siteConfig } from '../data/site';
           <p class="exito-copia">
             Se ha enviado una copia íntegra con constancia digital a tu correo electrónico. Responderemos formalmente dentro del plazo legal de 15 días hábiles.
           </p>
-          <a href="/" class="btn btn--linea">Regresar a la página principal</a>
+          <a href={getAssetPath('/')} class="btn btn--linea">Regresar a la página principal</a>
         </div>
       </form>
     </div>
