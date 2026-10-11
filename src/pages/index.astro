@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/sections/Hero.astro';
+import TrustBar from '../components/sections/TrustBar.astro';
+import Contrast from '../components/sections/Contrast.astro';
+import SolutionsHub from '../components/sections/SolutionsHub.astro';
+import AuthorityExperience from '../components/sections/AuthorityExperience.astro';
+import BookingLocation from '../components/sections/BookingLocation.astro';
+---
+
+<Layout
+  title="Nova Smile Lima | Clínica Dental Boutique en San Isidro"
+  description="Diagnóstico digital 3D, especialistas certificados del Colegio Odontológico del Perú y una experiencia serena en San Isidro. Reserva tu evaluación integral."
+>
+  <!-- Bloque 1: Autoridad & Propuesta de Valor -->
+  <Hero />
+  <TrustBar />
+  <Contrast />
+
+  <!-- Bloque 2: Soluciones Clínicas & Resultados en Pestañas Interactivas -->
+  <SolutionsHub />
+
+  <!-- Bloque 3: Cuerpo Médico Colegiado, Metodología Serene Flow & Testimonios -->
+  <AuthorityExperience />
+
+  <!-- Bloque 4: Conversión & Visita (Citas Online, Sede San Isidro & FAQs Clave) -->
+  <BookingLocation />
+</Layout>

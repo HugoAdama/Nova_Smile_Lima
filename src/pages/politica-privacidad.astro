@@ -1,0 +1,148 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/common/Icon.astro';
+import { siteConfig } from '../data/site';
+---
+
+<Layout
+  title="Política de Privacidad | Nova Smile Lima (Ley N° 29733)"
+  description="Política de tratamiento y protección de datos personales de Nova Smile Lima conforme a la Ley N° 29733 del Perú."
+>
+  <div class="legal-page">
+    <header class="legal-hero">
+      <div class="contenedor">
+        <a href="/" class="legal-hero__volver">
+          <Icon name="arrow-left" size={16} />
+          <span>Volver al inicio</span>
+        </a>
+        <span class="kicker">Marco Legal & Confidencialidad</span>
+        <h1>Política de Privacidad y Protección de Datos Personales</h1>
+        <p class="legal-hero__lead">
+          En cumplimiento estricto de la <strong>Ley N° 29733 (Ley de Protección de Datos Personales del Perú)</strong> y su Reglamento aprobado por D.S. 003-2013-JUS.
+        </p>
+      </div>
+    </header>
+
+    <section class="seccion">
+      <div class="contenedor legal-contenido">
+        <article class="legal-articulo">
+          <h2>1. Identidad y Domicilio del Titular del Banco de Datos</h2>
+          <p>
+            El responsable del tratamiento de los datos personales recopilados a través de este sitio web es <strong>Nova Smile Lima</strong>, con domicilio legal en {siteConfig.address.street}, distrito de {siteConfig.address.district}, provincia y departamento de Lima, Perú. Dirección Médica: Dra. Valeria Montes (COP 28419).
+          </p>
+
+          <h2>2. Finalidad del Tratamiento de Datos</h2>
+          <p>
+            Los datos personales facilitados por el usuario (nombre, teléfono de contacto / WhatsApp, correo electrónico y motivos de consulta odontológica) son utilizados exclusivamente para:
+          </p>
+          <ul>
+            <li>Gestionar, agendar y confirmar citas de evaluación y tratamientos dentales.</li>
+            <li>Brindar asesoría personalizada previa a la consulta presencial.</li>
+            <li>Emitir presupuestos clínicos y documentación necesaria para reembolsos con aseguradoras (EPS).</li>
+            <li>Cumplir con las obligaciones legales de la historia clínica médica conforme a las directivas del Ministerio de Salud (MINSA).</li>
+          </ul>
+
+          <h2>3. Consentimiento Libre, Previo e Informado</h2>
+          <p>
+            Al marcar la casilla de verificación en nuestros formularios digitales, el titular de los datos otorga su consentimiento expreso, inequívoco y consciente para que Nova Smile Lima trate sus datos conforme a los términos aquí descritos.
+          </p>
+
+          <h2>4. Secreto Médico y Confidencialidad</h2>
+          <p>
+            Toda información vinculada al estado de salud, motivos de consulta, fotografías intraorales y diagnósticos clínicos se encuentra amparada bajo el <strong>secreto profesional odontológico</strong> y el Código de Ética y Deontología del Colegio Odontológico del Perú. Nova Smile Lima no comparte, vende ni cede datos a terceras entidades comerciales bajo ninguna circunstancia.
+          </p>
+
+          <h2>5. Ejercicio de Derechos ARCO</h2>
+          <p>
+            Conforme a la Ley N° 29733, usted puede ejercer en cualquier momento sus derechos de <strong>Acceso, Rectificación, Cancelación y Oposición (ARCO)</strong> remitiendo una solicitud formal al correo electrónico: <a href={`mailto:${siteConfig.contact.email}`}>{siteConfig.contact.email}</a>.
+          </p>
+
+          <h2>6. Seguridad y Medidas Técnicas</h2>
+          <p>
+            Implementamos cifrado SSL/HTTPS en todas las comunicaciones digitales, controles de acceso por roles para recepción y personal clínico, y respaldos automáticos periódicos para garantizar la integridad y seguridad de la información.
+          </p>
+        </article>
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .legal-hero {
+    background: var(--marfil-fuerte);
+    padding-block: clamp(3rem, 5vw, 4.5rem);
+    border-bottom: 1px solid var(--piedra);
+  }
+
+  .legal-hero__volver {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--f-acento);
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--azul);
+    margin-bottom: 1.5rem;
+    text-decoration: underline;
+  }
+
+  .legal-hero h1 {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    max-width: 26ch;
+    margin-bottom: 1rem;
+  }
+
+  .legal-hero__lead {
+    font-size: 1.15rem;
+    color: var(--texto-suave);
+    max-width: 64ch;
+    margin: 0;
+  }
+
+  .legal-contenido {
+    max-width: 820px;
+  }
+
+  .legal-articulo {
+    background: #FFFFFF;
+    border: 1px solid var(--piedra);
+    border-radius: var(--radio-lg);
+    padding: clamp(2rem, 5vw, 3.5rem);
+    box-shadow: var(--sombra-sm);
+  }
+
+  .legal-articulo h2 {
+    font-size: 1.6rem;
+    margin: 2rem 0 0.8rem;
+    color: var(--azul);
+  }
+
+  .legal-articulo h2:first-child {
+    margin-top: 0;
+  }
+
+  .legal-articulo p {
+    color: var(--texto-suave);
+    font-size: 1.02rem;
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+
+  .legal-articulo ul {
+    list-style: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--texto-suave);
+  }
+
+  .legal-articulo li {
+    margin-bottom: 0.6rem;
+    line-height: 1.6;
+  }
+
+  .legal-articulo a {
+    color: var(--azul);
+    text-decoration: underline;
+    font-weight: 600;
+  }
+</style>

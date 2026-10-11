@@ -1,0 +1,355 @@
+---
+import Icon from '../common/Icon.astro';
+import { siteConfig } from '../../data/site';
+import { treatments } from '../../data/treatments';
+---
+
+<section class="seccion seccion--azul agenda-seccion" id="agenda" aria-labelledby="agenda-titulo">
+  <div class="contenedor agenda__rejilla">
+    <div class="agenda__texto reveal">
+      <span class="kicker">Atención Personalizada</span>
+      <h2 id="agenda-titulo">Reserva tu evaluación integral</h2>
+      <p class="agenda__bajada">
+        Déjanos tus datos de contacto y coordinaremos contigo en menos de 2 horas hábiles el día y la hora que mejor se adapte a tu agenda.
+      </p>
+
+      <ul class="agenda__beneficios reveal-stagger reveal" style="transition-delay: 0.15s;">
+        <li>
+          <div class="agenda__check">
+            <Icon name="check" size={18} />
+          </div>
+          <div>
+            <strong>Evaluación 3D diagnóstica</strong>
+            <span>Escaneo intraoral a color y fotografías clínicas sin costo sorpresa.</span>
+          </div>
+        </li>
+        <li>
+          <div class="agenda__check">
+            <Icon name="check" size={18} />
+          </div>
+          <div>
+            <strong>Presupuesto cerrado por escrito</strong>
+            <span>Opciones de tratamiento detalladas y transparentes antes de comenzar.</span>
+          </div>
+        </li>
+        <li>
+          <div class="agenda__check">
+            <Icon name="check" size={18} />
+          </div>
+          <div>
+            <strong>Estacionamiento privado & confort</strong>
+            <span>Ubicación céntrica en San Isidro con recepción boutique relajante.</span>
+          </div>
+        </li>
+      </ul>
+
+      <div class="agenda__wa-bloque reveal" style="transition-delay: 0.25s;">
+        <p>¿Prefieres coordinar directamente ahora mismo?</p>
+        <a
+          class="btn btn--linea-claro"
+          href={`https://wa.me/${siteConfig.contact.whatsappClean}?text=${encodeURIComponent(siteConfig.contact.whatsappDefaultMessage)}`}
+          target="_blank"
+          rel="noopener"
+        >
+          <Icon name="whatsapp" size={20} />
+          <span>Escribir directamente por WhatsApp</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="agenda__formulario-wrap reveal" style="transition-delay: 0.2s;">
+      <form class="formulario" id="reserva-form" method="POST" action="/gracias">
+        <div class="formulario__header">
+          <h3>Solicitud de Evaluación</h3>
+          <p>Paso 1 de 2: Información de contacto y motivo de consulta</p>
+        </div>
+
+        <fieldset class="formulario__seccion">
+          <legend class="sr-only">Datos personales</legend>
+          <div class="campo">
+            <label for="nombre">Nombre y Apellidos <span class="requerido" aria-hidden="true">*</span></label>
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              placeholder="Ej. Carmen Rodríguez"
+              autocomplete="name"
+              required
+            />
+          </div>
+
+          <div class="campos-dos">
+            <div class="campo">
+              <label for="whatsapp">WhatsApp / Celular <span class="requerido" aria-hidden="true">*</span></label>
+              <input
+                type="tel"
+                id="whatsapp"
+                name="whatsapp"
+                placeholder="Ej. 987 654 321"
+                autocomplete="tel"
+                required
+              />
+            </div>
+            <div class="campo">
+              <label for="email">Correo electrónico <span class="requerido" aria-hidden="true">*</span></label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="carmen@ejemplo.pe"
+                autocomplete="email"
+                required
+              />
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="formulario__seccion">
+          <legend class="sr-only">Detalles de la consulta</legend>
+          <div class="campos-dos">
+            <div class="campo">
+              <label for="tratamiento">Tratamiento de interés</label>
+              <select id="tratamiento" name="tratamiento">
+                <option value="" selected disabled>Selecciona una opción</option>
+                {treatments.map((t) => (
+                  <option value={t.id}>{t.title}</option>
+                ))}
+                <option value="evaluacion-general">Aún no lo sé, deseo diagnóstico general</option>
+              </select>
+            </div>
+            <div class="campo">
+              <label for="fecha">Preferencia de horario</label>
+              <select id="horario" name="horario">
+                <option value="manana">Mañana (09:00 - 13:00)</option>
+                <option value="tarde" selected>Tarde / Noche (14:00 - 20:00)</option>
+                <option value="sabado">Sábados (09:00 - 14:00)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="campo">
+            <label for="mensaje">¿Hay algo en particular que te gustaría contarnos?</label>
+            <textarea
+              id="mensaje"
+              name="mensaje"
+              rows="3"
+              placeholder="Ej. Me interesa mejorar la estética de mis dientes anteriores o resolver una molestia..."
+            ></textarea>
+          </div>
+        </fieldset>
+
+        <div class="consentimiento">
+          <input type="checkbox" id="consentimiento" name="consentimiento" required />
+          <label for="consentimiento">
+            Acepto el tratamiento de mis datos personales de conformidad con la <a href="/politica-privacidad" target="_blank">Ley N° 29733 de Protección de Datos Personales del Perú</a>.
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn--oro btn--bloque">
+          <Icon name="calendar" size={18} />
+          <span>Solicitar mi evaluación integral</span>
+        </button>
+
+        <div class="formulario__garantia">
+          <Icon name="lock" size={15} />
+          <span>Tus datos son estrictamente confidenciales bajo secreto médico profesional.</span>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<style>
+  .agenda__rejilla {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap: clamp(2.5rem, 6vw, 5rem);
+    align-items: start;
+  }
+
+  .agenda__bajada {
+    color: #C9D3DE;
+    margin-top: 1rem;
+    font-size: 1.125rem;
+    line-height: 1.6;
+  }
+
+  .agenda__beneficios {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .agenda__beneficios li {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .agenda__check {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(46, 196, 182, 0.2);
+    color: var(--turquesa);
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+  }
+
+  .agenda__beneficios strong {
+    display: block;
+    font-family: var(--f-acento);
+    font-size: 0.98rem;
+    color: var(--marfil);
+    margin-bottom: 0.2rem;
+  }
+
+  .agenda__beneficios span {
+    font-size: 0.9rem;
+    color: #BAC7D5;
+    line-height: 1.45;
+  }
+
+  .agenda__wa-bloque {
+    margin-top: 3rem;
+    padding-top: 1.8rem;
+    border-top: 1px solid rgba(247, 243, 236, 0.16);
+  }
+
+  .agenda__wa-bloque p {
+    color: var(--oro);
+    font-size: 0.95rem;
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+  }
+
+  /* Formulario */
+  .formulario {
+    background: var(--marfil);
+    color: var(--carbon);
+    border-radius: var(--radio-lg);
+    padding: clamp(1.8rem, 4vw, 2.8rem);
+    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+  }
+
+  .formulario__header {
+    margin-bottom: 1.6rem;
+  }
+
+  .formulario__header h3 {
+    font-size: 1.7rem;
+    color: var(--azul);
+    margin: 0 0 0.3rem;
+  }
+
+  .formulario__header p {
+    font-size: 0.86rem;
+    color: var(--texto-suave);
+    margin: 0;
+  }
+
+  .formulario__seccion {
+    border: none;
+    padding: 0;
+    margin: 0 0 1.2rem;
+  }
+
+  .campo {
+    margin-bottom: 1.1rem;
+  }
+
+  .campo label {
+    display: block;
+    font-family: var(--f-acento);
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--azul);
+    margin-bottom: 0.4rem;
+  }
+
+  .requerido {
+    color: #C64646;
+  }
+
+  .campo input,
+  .campo select,
+  .campo textarea {
+    width: 100%;
+    font: inherit;
+    font-size: 0.98rem;
+    color: var(--carbon);
+    padding: 0.85rem 1.1rem;
+    background: #FFFFFF;
+    border: 1.5px solid var(--piedra);
+    border-radius: var(--radio-sm);
+    transition: border-color var(--trans-rapida), box-shadow var(--trans-rapida);
+  }
+
+  .campo input:focus,
+  .campo select:focus,
+  .campo textarea:focus {
+    outline: none;
+    border-color: var(--turquesa);
+    box-shadow: 0 0 0 3px rgba(46, 196, 182, 0.2);
+  }
+
+  .campos-dos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .consentimiento {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--texto-suave);
+    line-height: 1.45;
+  }
+
+  .consentimiento input {
+    width: 18px;
+    height: 18px;
+    margin-top: 0.2rem;
+    accent-color: var(--azul);
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  .consentimiento a {
+    color: var(--azul);
+    text-decoration: underline;
+  }
+
+  .formulario__garantia {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: #7A8794;
+    text-align: center;
+  }
+
+  @media (max-width: 960px) {
+    .agenda__rejilla {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 580px) {
+    .campos-dos {
+      grid-template-columns: 1fr;
+    }
+    .formulario {
+      padding: 1.5rem;
+    }
+  }
+</style>

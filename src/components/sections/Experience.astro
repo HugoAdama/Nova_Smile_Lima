@@ -1,0 +1,263 @@
+---
+import Icon from '../common/Icon.astro';
+
+const benefits = [
+  {
+    icon: 'cube' as const,
+    title: 'Escáner intraoral 3D a color',
+    desc: 'Sin pastas de impresión incómodas ni náuseas: obtenemos una réplica digital exacta de tu boca en minutos con fidelidad milimétrica.'
+  },
+  {
+    icon: 'shield' as const,
+    title: 'Radiografía y tomografía volumétrica',
+    desc: 'Diagnóstico por imágenes con mínima radiación para visualizar hueso, raíces y estructuras anatómicas con total seguridad.'
+  },
+  {
+    icon: 'smile' as const,
+    title: 'Acompañamiento sereno y sin dolor',
+    desc: 'Te explicamos cada paso antes de actuar. Cuentas con control de pausas en todo momento y un ambiente diseñado para reducir el estrés.'
+  }
+];
+---
+
+<section class="seccion seccion--azul experiencia" id="experiencia" aria-labelledby="experiencia-titulo">
+  <!-- Halo ambiental azul/turquesa -->
+  <div class="experiencia__aura" aria-hidden="true"></div>
+
+  <div class="contenedor experiencia__rejilla">
+    <div class="experiencia__visual reveal">
+      <div class="experiencia__glow" aria-hidden="true"></div>
+      <div class="experiencia__imagen-marco">
+        <img
+          src="/images/scanner-tech.jpg"
+          alt="Escáner intraoral 3D digital en consultorio de Nova Smile Lima San Isidro"
+          width="700"
+          height="700"
+          loading="lazy"
+          decoding="async"
+          class="experiencia__imagen"
+        />
+        <div class="experiencia__tag">
+          <Icon name="cube" size={16} />
+          <span>Tecnología Digital 3D</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="experiencia__texto reveal" style="transition-delay: 0.15s;">
+      <span class="kicker">Filosofía Clínica</span>
+      <h2 id="experiencia-titulo">Precisión, calma y tecnología.</h2>
+      <p class="experiencia__bajada">
+        Un equipo que escucha antes de tratar y una clínica boutique en San Isidro pensada para que te sientas tranquilo desde el primer instante.
+      </p>
+
+      <ul class="beneficios reveal-stagger reveal" style="transition-delay: 0.25s;">
+        {benefits.map((b) => (
+          <li class="beneficio-item">
+            <div class="beneficio__icono-wrap">
+              <Icon name={b.icon} size={24} class="beneficio__icono" />
+            </div>
+            <div class="beneficio__info">
+              <strong>{b.title}</strong>
+              <span>{b.desc}</span>
+            </div>
+          </li>
+        ))}
+      </ul>
+
+      <div class="experiencia__acciones reveal" style="transition-delay: 0.35s;">
+        <a class="btn btn--oro" href="#agenda">
+          <Icon name="calendar" size={18} />
+          <span>Agenda tu visita</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .experiencia {
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(160deg, #07192C 0%, var(--azul) 50%, var(--azul-suave) 100%);
+  }
+
+  .experiencia__aura {
+    position: absolute;
+    top: 20%;
+    left: -10%;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(46, 196, 182, 0.15), transparent 70%);
+    filter: blur(80px);
+    pointer-events: none;
+    animation: floatGentle 9s ease-in-out infinite alternate;
+  }
+
+  .experiencia__rejilla {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap: clamp(2.5rem, 6vw, 5.5rem);
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .experiencia__visual {
+    position: relative;
+  }
+
+  .experiencia__glow {
+    position: absolute;
+    inset: -15px;
+    border-radius: var(--radio-lg);
+    background: radial-gradient(circle, rgba(46, 196, 182, 0.35), transparent 70%);
+    filter: blur(25px);
+    opacity: 0.5;
+    animation: pulseHalo 5s ease-in-out infinite;
+  }
+
+  .experiencia__imagen-marco {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    border-radius: var(--radio-lg);
+    overflow: hidden;
+    box-shadow: 0 30px 70px -20px rgba(0, 0, 0, 0.7);
+    border: 2px solid rgba(198, 161, 91, 0.35);
+    transition: transform var(--trans-media), border-color var(--trans-media);
+  }
+
+  .experiencia__imagen-marco:hover {
+    transform: translateY(-4px);
+    border-color: rgba(46, 196, 182, 0.6);
+  }
+
+  .experiencia__imagen {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .experiencia__imagen-marco:hover .experiencia__imagen {
+    transform: scale(1.05);
+  }
+
+  .experiencia__tag {
+    position: absolute;
+    bottom: 1.25rem;
+    left: 1.25rem;
+    background: rgba(10, 37, 64, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: var(--oro);
+    font-family: var(--f-acento);
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 0.55rem 1.05rem;
+    border-radius: var(--radio-pill);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid rgba(198, 161, 91, 0.4);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    animation: floatGentle 6s ease-in-out infinite;
+  }
+
+  .experiencia__bajada {
+    color: #C9D3DE;
+    margin-top: 1rem;
+    font-size: 1.125rem;
+    line-height: 1.6;
+  }
+
+  .beneficios {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .beneficio-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: 1.1rem 1.25rem;
+    border-radius: var(--radio-md);
+    border: 1px solid transparent;
+    transition: background-color var(--trans-rapida),
+                border-color var(--trans-rapida),
+                transform var(--trans-rapida);
+  }
+
+  .beneficio-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(247, 243, 236, 0.15);
+    transform: translateX(6px);
+  }
+
+  .beneficio__icono-wrap {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: rgba(198, 161, 91, 0.14);
+    border: 1px solid rgba(198, 161, 91, 0.25);
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+    transition: background-color var(--trans-rapida), transform var(--trans-rapida), box-shadow var(--trans-rapida);
+  }
+
+  .beneficio-item:hover .beneficio__icono-wrap {
+    background: var(--oro);
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 0 16px rgba(198, 161, 91, 0.5);
+  }
+
+  .beneficio__icono {
+    color: var(--oro);
+    transition: color var(--trans-rapida);
+  }
+
+  .beneficio-item:hover .beneficio__icono {
+    color: var(--azul);
+  }
+
+  .beneficios strong {
+    display: block;
+    font-family: var(--f-acento);
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--marfil);
+    margin-bottom: 0.25rem;
+    transition: color var(--trans-rapida);
+  }
+
+  .beneficio-item:hover strong {
+    color: var(--oro);
+  }
+
+  .beneficios span {
+    color: #C9D3DE;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    display: block;
+  }
+
+  .experiencia__acciones {
+    margin-top: 2.5rem;
+  }
+
+  @media (max-width: 960px) {
+    .experiencia__rejilla {
+      grid-template-columns: 1fr;
+    }
+    .experiencia__visual {
+      max-width: 480px;
+      margin-inline: auto;
+      width: 100%;
+    }
+  }
+</style>

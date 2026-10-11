@@ -1,0 +1,298 @@
+---
+import Icon from '../common/Icon.astro';
+import Badge from '../common/Badge.astro';
+---
+
+<section class="hero" aria-labelledby="hero-titulo">
+  <!-- Aura de fondo sutil interactiva -->
+  <div class="hero__aura hero__aura--1" aria-hidden="true"></div>
+  <div class="hero__aura hero__aura--2" aria-hidden="true"></div>
+
+  <div class="contenedor hero__rejilla">
+    <div class="hero__contenido">
+      <div class="hero__badge-kicker reveal">
+        <Badge text="Clínica Dental Boutique · San Isidro" variant="gold" />
+      </div>
+
+      <h1 id="hero-titulo" class="hero__titulo reveal" style="transition-delay: 0.1s;">
+        Nova Smile Lima: <span class="texto-acento">innovación que se nota</span> en tu sonrisa.
+      </h1>
+
+      <p class="hero__sub reveal" style="transition-delay: 0.2s;">
+        Diagnóstico digital 3D sin moldes molestos, especialistas certificados por el Colegio Odontológico del Perú y una experiencia serena diseñada para devolverte la tranquilidad.
+      </p>
+
+      <div class="hero__acciones reveal" style="transition-delay: 0.3s;">
+        <a class="btn btn--oro hero__btn-principal" href="#agenda">
+          <Icon name="calendar" size={18} />
+          <span>Reserva tu evaluación</span>
+        </a>
+        <a class="btn btn--linea" href="#tratamientos">
+          <span>Ver tratamientos</span>
+          <Icon name="arrow-right" size={16} />
+        </a>
+      </div>
+
+      <ul class="hero__insignias reveal-stagger reveal" style="transition-delay: 0.4s;" aria-label="Nuestros pilares de atención">
+        <li class="insignia">Diagnóstico digital 3D</li>
+        <li class="insignia">Planes sin sorpresas</li>
+        <li class="insignia">Agenda flexible en San Isidro</li>
+      </ul>
+    </div>
+
+    <div class="hero__visual-contenedor reveal" style="transition-delay: 0.25s;">
+      <div class="hero__visual-aura" aria-hidden="true"></div>
+      <div class="hero__visual-marco">
+        <img
+          src="/images/hero-clinic.jpg"
+          alt="Consultorio dental boutique de Nova Smile Lima en San Isidro con iluminación natural y equipo 3D de vanguardia"
+          width="800"
+          height="1000"
+          fetchpriority="high"
+          decoding="async"
+          class="hero__imagen"
+        />
+
+        <div class="hero__destello" aria-hidden="true">
+          <Icon name="sparkle" size={44} class="hero__destello-icono" />
+        </div>
+
+        <div class="hero__ficha">
+          <div class="hero__ficha-icono">
+            <Icon name="shield" size={22} />
+          </div>
+          <div class="hero__ficha-texto">
+            <strong>Evaluación integral 3D</strong>
+            <span>Escáner intraoral en color y plan a tu medida</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-block: clamp(3.5rem, 7.5vw, 6rem) clamp(4rem, 8.5vw, 7rem);
+    background: radial-gradient(circle at 15% 25%, rgba(198, 161, 91, 0.12), transparent 50%),
+                radial-gradient(circle at 85% 75%, rgba(46, 196, 182, 0.1), transparent 50%),
+                var(--marfil);
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Auras de luz ambiental */
+  .hero__aura {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero__aura--1 {
+    top: -100px;
+    right: 5%;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle, rgba(198, 161, 91, 0.18), transparent 70%);
+    animation: floatGentle 8s ease-in-out infinite alternate;
+  }
+
+  .hero__aura--2 {
+    bottom: -150px;
+    left: -100px;
+    width: 520px;
+    height: 520px;
+    background: radial-gradient(circle, rgba(46, 196, 182, 0.15), transparent 70%);
+    animation: floatGentle 10s ease-in-out infinite alternate-reverse;
+  }
+
+  .hero__rejilla {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: clamp(2.5rem, 5vw, 5rem);
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero__badge-kicker {
+    margin-bottom: 1.4rem;
+  }
+
+  .texto-acento {
+    color: var(--azul-suave);
+    position: relative;
+    font-style: italic;
+    background: linear-gradient(135deg, var(--azul) 0%, var(--azul-suave) 50%, #061626 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero__sub {
+    font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+    color: var(--texto-suave);
+    margin-top: 1.6rem;
+    line-height: 1.65;
+    max-width: 54ch;
+  }
+
+  .hero__acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2.4rem;
+  }
+
+  .hero__btn-principal {
+    padding-inline: 2.2rem;
+  }
+
+  .hero__insignias {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2.5rem;
+  }
+
+  /* Marco visual y halo */
+  .hero__visual-contenedor {
+    position: relative;
+    max-width: 500px;
+    width: 100%;
+    margin-inline: auto;
+  }
+
+  .hero__visual-aura {
+    position: absolute;
+    inset: -15px;
+    border-radius: 235px 235px var(--radio-lg) var(--radio-lg);
+    background: radial-gradient(circle, rgba(198, 161, 91, 0.35), transparent 70%);
+    filter: blur(20px);
+    z-index: -1;
+    opacity: 0.6;
+    animation: pulseHalo 6s ease-in-out infinite;
+  }
+
+  .hero__visual-marco {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    border-radius: 220px 220px var(--radio-lg) var(--radio-lg);
+    overflow: hidden;
+    box-shadow: 0 35px 70px -25px rgba(10, 37, 64, 0.45),
+                0 0 0 1px rgba(198, 161, 91, 0.25);
+    border: 3.5px solid rgba(255, 255, 255, 0.95);
+    background-color: var(--azul);
+    transition: transform var(--trans-media), box-shadow var(--trans-media);
+  }
+
+  .hero__visual-marco:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 45px 85px -25px rgba(10, 37, 64, 0.55),
+                0 0 30px rgba(198, 161, 91, 0.35);
+  }
+
+  .hero__imagen {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hero__visual-marco:hover .hero__imagen {
+    transform: scale(1.04);
+  }
+
+  .hero__destello {
+    position: absolute;
+    top: 12%;
+    right: 18%;
+    width: 48px;
+    height: 48px;
+    color: var(--oro);
+    animation: shineGlint 6s ease-in-out infinite;
+    pointer-events: none;
+    filter: drop-shadow(0 4px 14px rgba(198, 161, 91, 0.6));
+  }
+
+  .hero__ficha {
+    position: absolute;
+    left: 6%;
+    right: 6%;
+    bottom: 6%;
+    background: rgba(247, 243, 236, 0.96);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-radius: var(--radio-md);
+    padding: 1.1rem 1.35rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.35),
+                0 0 0 1px rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(198, 161, 91, 0.2);
+    animation: floatGentle 5s ease-in-out infinite;
+    transition: transform var(--trans-rapida), box-shadow var(--trans-rapida);
+  }
+
+  .hero__ficha:hover {
+    animation-play-state: paused;
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.45);
+  }
+
+  .hero__ficha-icono {
+    width: 46px;
+    height: 46px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--azul);
+    color: var(--oro);
+    display: grid;
+    place-items: center;
+    transition: transform var(--trans-rapida);
+  }
+
+  .hero__ficha:hover .hero__ficha-icono {
+    transform: scale(1.08) rotate(5deg);
+  }
+
+  .hero__ficha-texto strong {
+    display: block;
+    font-family: var(--f-acento);
+    font-size: 1rem;
+    color: var(--azul);
+    line-height: 1.3;
+  }
+
+  .hero__ficha-texto span {
+    font-size: 0.9rem;
+    color: var(--texto-suave);
+    line-height: 1.35;
+  }
+
+  @media (max-width: 960px) {
+    .hero__rejilla {
+      grid-template-columns: 1fr;
+    }
+    .hero__visual-contenedor {
+      max-width: 420px;
+      margin-top: 1.5rem;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .hero__acciones {
+      flex-direction: column;
+    }
+    .hero__acciones .btn {
+      width: 100%;
+    }
+    .hero__insignias {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

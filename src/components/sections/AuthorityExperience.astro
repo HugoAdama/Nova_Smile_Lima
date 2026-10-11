@@ -1,0 +1,664 @@
+---
+import Icon from '../common/Icon.astro';
+import SectionHeader from '../common/SectionHeader.astro';
+import { specialists } from '../../data/team';
+import { testimonials } from '../../data/testimonials';
+import { processSteps } from '../../data/process';
+---
+
+<section class="seccion autoridad-seccion" id="experiencia" aria-labelledby="autoridad-titulo">
+  <div id="equipo" class="anchor-punto" aria-hidden="true"></div>
+  <div class="contenedor">
+    <div class="reveal">
+      <SectionHeader
+        kicker="Cuerpo Médico Colegiado & Filosofía Serena"
+        title="Experiencia clínica avalada por resultados y tecnología 3D"
+        description="Especialistas titulados y habilitados por el Colegio Odontológico del Perú (COP), respaldados por diagnóstico digital avanzado y una metodología de 4 pasos sin imprevistos."
+      />
+    </div>
+
+    <!-- 1. Cuadrícula de Doctores Especialistas -->
+    <div class="equipo-fila reveal-stagger reveal">
+      {specialists.map((doc) => (
+        <article class="doc-card">
+          <div class="doc-card__foto-marco">
+            <img
+              src={doc.photo}
+              alt={`Fotografía de ${doc.name}, ${doc.role}`}
+              width="500"
+              height="620"
+              loading="lazy"
+              decoding="async"
+              class="doc-card__foto"
+            />
+            <div class="doc-card__chip">
+              <Icon name="medal" size={13} />
+              <span>{doc.cop}</span>
+              {doc.rne && <span class="doc-card__rne">· {doc.rne}</span>}
+            </div>
+          </div>
+
+          <div class="doc-card__body">
+            <h3>{doc.name}</h3>
+            <span class="doc-card__rol">{doc.role}</span>
+            <p class="doc-card__bio">{doc.bio}</p>
+
+            <div class="doc-card__tags">
+              {doc.specialties.map((esp) => (
+                <span class="doc-tag">{esp}</span>
+              ))}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- 2. Metodología Serene Flow en 4 Pasos Compactos con Integración Tecnológica -->
+    <div class="proceso-timeline reveal" style="transition-delay: 0.2s;">
+      <div class="proceso-timeline__header">
+        <div class="proceso-timeline__header-sup">
+          <span class="kicker">Metodología Serene Flow</span>
+          <div class="proceso-tech-pill">
+            <Icon name="cube" size={14} />
+            <span>Escáner 3D & Odontología Sin Dolor</span>
+          </div>
+        </div>
+        <h3>Tu experiencia paso a paso, sin incertidumbres</h3>
+        <p class="proceso-timeline__bajada">
+          Tiempos holgados, tecnología digital que sustituye pastas incómodas y comunicación transparente en cada consulta.
+        </p>
+      </div>
+
+      <div class="timeline-rejilla">
+        {processSteps.map((paso) => (
+          <div class="timeline-paso">
+            <div class="timeline-paso__top">
+              <span class="timeline-paso__num" aria-hidden="true">0{paso.number}</span>
+              <div class="timeline-paso__icono-wrap">
+                <Icon name={paso.icon} size={18} class="timeline-paso__icono" />
+              </div>
+            </div>
+            <div class="timeline-paso__body">
+              <h4>{paso.title}</h4>
+              <p>{paso.description}</p>
+            </div>
+            {paso.details && (
+              <div class="timeline-paso__detalle">
+                <span>{paso.details}</span>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- 3. Carrusel Compacto de Testimonios Reales -->
+    <div class="testimonios-bloque reveal" style="transition-delay: 0.25s;">
+      <div class="testimonios-header">
+        <div>
+          <span class="kicker">Historias de Pacientes Reales</span>
+          <h3>La tranquilidad de saberte en buenas manos</h3>
+        </div>
+        <div class="testimonios-nav-controles">
+          <button type="button" class="carrusel-btn" id="prev-testimonio" aria-label="Ver testimonio anterior">
+            <Icon name="arrow-left" size={16} />
+          </button>
+          <button type="button" class="carrusel-btn" id="next-testimonio" aria-label="Ver siguiente testimonio">
+            <Icon name="arrow-right" size={16} />
+          </button>
+        </div>
+      </div>
+
+      <div class="testimonios-pista" id="testimonios-track" tabindex="0" role="region" aria-label="Testimonios de pacientes">
+        {testimonials.map((t) => (
+          <figure class="testimonio-card">
+            <div class="testimonio-calificacion">
+              {Array.from({ length: t.rating }).map(() => (
+                <Icon name="star" size={15} class="estrella-oro" />
+              ))}
+            </div>
+
+            <blockquote>“{t.quote}”</blockquote>
+
+            <footer>
+              <div class="testimonio-avatar" aria-hidden="true">{t.avatarInitial}</div>
+              <div>
+                <div class="testimonio-nombre-row">
+                  <strong>{t.name}</strong>
+                  {t.consentVerified && (
+                    <span class="consent-chip">
+                      <Icon name="check" size={11} />
+                      <span>Verificado</span>
+                    </span>
+                  )}
+                </div>
+                <span class="testimonio-servicio">{t.treatment}</span>
+              </div>
+            </footer>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const track = document.getElementById('testimonios-track');
+  const prevBtn = document.getElementById('prev-testimonio');
+  const nextBtn = document.getElementById('next-testimonio');
+
+  if (track) {
+    const getStep = () => {
+      const card = track.querySelector<HTMLElement>('.testimonio-card');
+      return card ? card.offsetWidth + 24 : 380;
+    };
+
+    const nextSlide = () => {
+      const step = getStep();
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      if (track.scrollLeft >= maxScroll - 20) {
+        track.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        track.scrollBy({ left: step, behavior: 'smooth' });
+      }
+    };
+
+    const prevSlide = () => {
+      const step = getStep();
+      if (track.scrollLeft <= 20) {
+        track.scrollTo({ left: track.scrollWidth, behavior: 'smooth' });
+      } else {
+        track.scrollBy({ left: -step, behavior: 'smooth' });
+      }
+    };
+
+    let autoTimer: number | undefined;
+    const intervalTime = 4000; // 4 segundos entre desplazamientos
+
+    const startAutoSlide = () => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      stopAutoSlide();
+      autoTimer = window.setInterval(nextSlide, intervalTime);
+    };
+
+    const stopAutoSlide = () => {
+      if (autoTimer) {
+        clearInterval(autoTimer);
+        autoTimer = undefined;
+      }
+    };
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        prevSlide();
+        stopAutoSlide();
+        startAutoSlide();
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        nextSlide();
+        stopAutoSlide();
+        startAutoSlide();
+      });
+    }
+
+    // Pausar al interactuar o pasar el cursor por encima
+    track.addEventListener('mouseenter', stopAutoSlide);
+    track.addEventListener('mouseleave', startAutoSlide);
+    track.addEventListener('touchstart', stopAutoSlide, { passive: true });
+    track.addEventListener('touchend', () => {
+      setTimeout(startAutoSlide, 2000);
+    }, { passive: true });
+
+    // Iniciar auto-scroll
+    startAutoSlide();
+  }
+</script>
+
+<style>
+  .autoridad-seccion {
+    background: #FFFFFF;
+    position: relative;
+    border-top: 1px solid var(--piedra);
+  }
+
+  /* 1. Especialistas */
+  .equipo-fila {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.5rem, 3vw, 2.4rem);
+    margin-bottom: 4rem;
+  }
+
+  .doc-card {
+    background: var(--marfil);
+    border: 1px solid var(--piedra);
+    border-radius: var(--radio-lg);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--sombra-sm);
+    transition: transform var(--trans-media), box-shadow var(--trans-media), border-color var(--trans-media);
+  }
+
+  .doc-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--sombra-lg);
+    border-color: rgba(198, 161, 91, 0.4);
+  }
+
+  .doc-card__foto-marco {
+    position: relative;
+    aspect-ratio: 4 / 4.6;
+    background: var(--marfil-fuerte);
+    overflow: hidden;
+  }
+
+  .doc-card__foto {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .doc-card:hover .doc-card__foto {
+    transform: scale(1.04);
+  }
+
+  .doc-card__chip {
+    position: absolute;
+    bottom: 0.85rem;
+    left: 0.85rem;
+    right: 0.85rem;
+    background: rgba(10, 37, 64, 0.92);
+    backdrop-filter: blur(8px);
+    color: var(--oro);
+    font-family: var(--f-acento);
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 0.45rem 0.85rem;
+    border-radius: var(--radio-pill);
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    border: 1px solid rgba(198, 161, 91, 0.4);
+  }
+
+  .doc-card__rne {
+    color: #D3DEEB;
+    font-size: 0.78rem;
+  }
+
+  .doc-card__body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .doc-card__body h3 {
+    font-size: 1.48rem;
+    margin: 0 0 0.3rem;
+  }
+
+  .doc-card__rol {
+    font-family: var(--f-acento);
+    font-size: 0.9rem;
+    color: var(--azul-suave);
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+  }
+
+  .doc-card__bio {
+    color: var(--texto-suave);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+  }
+
+  .doc-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: auto;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--piedra);
+  }
+
+  .doc-tag {
+    font-size: 0.8rem;
+    font-family: var(--f-acento);
+    font-weight: 500;
+    color: var(--azul);
+    background: rgba(10, 37, 64, 0.05);
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--radio-sm);
+  }
+
+  .anchor-punto {
+    position: absolute;
+    top: -80px;
+    left: 0;
+    pointer-events: none;
+  }
+
+  /* 2. Timeline Metodología Compacto */
+  .proceso-timeline {
+    background: var(--marfil-fuerte);
+    border-radius: var(--radio-lg);
+    padding: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 4rem;
+    border: 1px solid var(--piedra);
+  }
+
+  .proceso-timeline__header {
+    margin-bottom: 2rem;
+  }
+
+  .proceso-timeline__header-sup {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+  }
+
+  .proceso-tech-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.84rem;
+    font-family: var(--f-acento);
+    font-weight: 600;
+    color: var(--azul);
+    background: rgba(198, 161, 91, 0.18);
+    border: 1px solid rgba(198, 161, 91, 0.35);
+    padding: 0.35rem 0.85rem;
+    border-radius: var(--radio-pill);
+  }
+
+  .proceso-timeline__header h3 {
+    font-size: 1.85rem;
+    margin-top: 0.2rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .proceso-timeline__bajada {
+    color: var(--texto-suave);
+    font-size: 1.02rem;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 720px;
+  }
+
+  .timeline-rejilla {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    align-items: stretch;
+  }
+
+  .timeline-paso {
+    background: #FFFFFF;
+    border: 1px solid var(--piedra);
+    border-radius: var(--radio-lg);
+    padding: 1.5rem 1.35rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--sombra-sm);
+    transition: transform var(--trans-media), box-shadow var(--trans-media), border-color var(--trans-media);
+    position: relative;
+  }
+
+  .timeline-paso:hover {
+    transform: translateY(-4px);
+    border-color: rgba(198, 161, 91, 0.45);
+    box-shadow: var(--sombra-md);
+  }
+
+  .timeline-paso__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.15rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid rgba(198, 161, 91, 0.15);
+  }
+
+  .timeline-paso__num {
+    font-family: var(--f-titulo);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--azul);
+    line-height: 1;
+  }
+
+  .timeline-paso__icono-wrap {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(198, 161, 91, 0.14);
+    border: 1px solid rgba(198, 161, 91, 0.25);
+    display: grid;
+    place-items: center;
+    color: var(--oro);
+    transition: transform var(--trans-rapida), background-color var(--trans-rapida);
+  }
+
+  .timeline-paso:hover .timeline-paso__icono-wrap {
+    background: var(--oro);
+    color: var(--azul);
+    transform: scale(1.08) rotate(5deg);
+  }
+
+  .timeline-paso__body {
+    flex-grow: 1;
+    margin-bottom: 1.25rem;
+  }
+
+  .timeline-paso__body h4 {
+    font-size: 1.22rem;
+    font-family: var(--f-titulo);
+    color: var(--azul);
+    margin: 0 0 0.55rem;
+    line-height: 1.25;
+  }
+
+  .timeline-paso__body p {
+    font-size: 0.94rem;
+    color: var(--texto-suave);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .timeline-paso__detalle {
+    margin-top: auto;
+    font-size: 0.84rem;
+    color: var(--azul);
+    background: rgba(198, 161, 91, 0.08);
+    border-left: 2.5px solid var(--oro);
+    padding: 0.65rem 0.85rem;
+    border-radius: 0 var(--radio-sm) var(--radio-sm) 0;
+    line-height: 1.45;
+  }
+
+  /* 3. Carrusel de Testimonios */
+  .testimonios-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 1.6rem;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .testimonios-header h3 {
+    font-size: 1.8rem;
+    margin-top: 0.3rem;
+  }
+
+  .testimonios-nav-controles {
+    display: flex;
+    gap: 0.6rem;
+  }
+
+  .carrusel-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    border: 1.5px solid var(--piedra);
+    color: var(--azul);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: all var(--trans-rapida);
+  }
+
+  .carrusel-btn:hover {
+    background: var(--azul);
+    color: var(--oro);
+    border-color: var(--azul);
+  }
+
+  .testimonios-pista {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 1.25rem;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(198, 161, 91, 0.4) transparent;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .testimonios-pista::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .testimonios-pista::-webkit-scrollbar-track {
+    background: rgba(10, 37, 64, 0.05);
+    border-radius: var(--radio-pill);
+  }
+
+  .testimonios-pista::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, var(--oro), #D4AF37);
+    border-radius: var(--radio-pill);
+  }
+
+  .testimonios-pista::-webkit-scrollbar-thumb:hover {
+    background: var(--oro-oscuro);
+  }
+
+  .testimonio-card {
+    flex: 0 0 min(100%, 380px);
+    scroll-snap-align: start;
+    background: var(--marfil);
+    border: 1px solid var(--piedra);
+    border-radius: var(--radio-lg);
+    padding: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.25rem;
+    margin: 0;
+    transition: transform var(--trans-rapida), box-shadow var(--trans-rapida);
+  }
+
+  .testimonio-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--sombra-md);
+  }
+
+  .testimonio-calificacion {
+    display: flex;
+    gap: 0.2rem;
+  }
+
+  .estrella-oro {
+    color: var(--oro);
+  }
+
+  .testimonio-card blockquote {
+    font-family: var(--f-titulo);
+    font-size: 1.42rem;
+    line-height: 1.45;
+    color: var(--azul);
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .testimonio-card footer {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--piedra);
+  }
+
+  .testimonio-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--salvia);
+    color: var(--azul);
+    display: grid;
+    place-items: center;
+    font-family: var(--f-acento);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .testimonio-nombre-row {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  .testimonio-nombre-row strong {
+    font-family: var(--f-acento);
+    font-size: 0.98rem;
+    color: var(--azul);
+  }
+
+  .consent-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.78rem;
+    color: #178343;
+    background: rgba(31, 170, 89, 0.12);
+    padding: 0.2rem 0.5rem;
+    border-radius: var(--radio-pill);
+    font-family: var(--f-acento);
+    font-weight: 600;
+  }
+
+  .testimonio-servicio {
+    font-size: 0.88rem;
+    color: var(--texto-suave);
+    display: block;
+  }
+
+  @media (max-width: 960px) {
+    .equipo-fila {
+      grid-template-columns: 1fr;
+      max-width: 420px;
+      margin-inline: auto;
+    }
+    .timeline-rejilla {
+      grid-template-columns: 1fr 1fr;
+      row-gap: 2rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .timeline-rejilla {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,495 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/common/Icon.astro';
+import { siteConfig } from '../data/site';
+---
+
+<Layout
+  title={`Libro de Reclamaciones Virtual | ${siteConfig.name}`}
+  description="Hoja de reclamación virtual conforme al Código de Protección y Defensa del Consumidor (Ley N° 29571) y D.S. N° 011-2011-PCM."
+>
+  <div class="reclamaciones-pagina">
+    <div class="contenedor contenedor--estrecho">
+      <div class="reclamaciones-header">
+        <a href="/" class="reclamaciones-volver">
+          <Icon name="arrow-left" size={16} />
+          <span>Volver al inicio</span>
+        </a>
+
+        <div class="reclamaciones-sello">
+          <Icon name="book" size={24} class="icono-oro" />
+          <span>Conforme al D.S. N° 011-2011-PCM · INDECOPI</span>
+        </div>
+
+        <h1>Libro de Reclamaciones Virtual</h1>
+        <p class="reclamaciones-sub">
+          Hoja de Reclamación Oficial conforme al Código de Protección y Defensa del Consumidor (Ley N° 29571).
+        </p>
+
+        <!-- Datos del Establecimiento -->
+        <div class="datos-establecimiento">
+          <div class="dato-empresa">
+            <strong>Razón Social:</strong>
+            <span>NOVA SMILE LIMA S.A.C.</span>
+          </div>
+          <div class="dato-empresa">
+            <strong>RUC:</strong>
+            <span>20608945231</span>
+          </div>
+          <div class="dato-empresa">
+            <strong>Dirección:</strong>
+            <span>{siteConfig.address.street}, {siteConfig.address.district}, Lima</span>
+          </div>
+          <div class="dato-empresa">
+            <strong>Dirección Médica:</strong>
+            <span>Dra. Valeria Montes (COP 28419)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Formulario de Reclamación -->
+      <form class="reclamaciones-form" id="form-reclamacion">
+        <div class="form-seccion">
+          <h3>1. Identificación del Consumidor Reclamante</h3>
+          <div class="campos-grid-dos">
+            <div class="campo">
+              <label for="nombre">Nombres y Apellidos *</label>
+              <input type="text" id="nombre" name="nombre" required placeholder="Ej. Carlos Mendoza Ramos" />
+            </div>
+            <div class="campos-doc">
+              <div class="campo">
+                <label for="tipo_doc">Documento *</label>
+                <select id="tipo_doc" name="tipo_doc" required>
+                  <option value="DNI">DNI</option>
+                  <option value="CE">Carné de Extranjería</option>
+                  <option value="PASAPORTE">Pasaporte</option>
+                </select>
+              </div>
+              <div class="campo">
+                <label for="num_doc">Número *</label>
+                <input type="text" id="num_doc" name="num_doc" required placeholder="71234567" />
+              </div>
+            </div>
+          </div>
+
+          <div class="campos-grid-dos">
+            <div class="campo">
+              <label for="email">Correo Electrónico *</label>
+              <input type="email" id="email" name="email" required placeholder="carlos@correo.pe" />
+            </div>
+            <div class="campo">
+              <label for="telefono">Teléfono / Celular *</label>
+              <input type="tel" id="telefono" name="telefono" required placeholder="987 654 321" />
+            </div>
+          </div>
+
+          <div class="campo">
+            <label for="domicilio">Domicilio / Dirección *</label>
+            <input type="text" id="domicilio" name="domicilio" required placeholder="Av. Los Tulipanes 340, Dpto 502" />
+          </div>
+        </div>
+
+        <div class="form-seccion">
+          <h3>2. Identificación del Servicio Contratado</h3>
+          <div class="campos-grid-dos">
+            <div class="campo">
+              <label for="tipo_bien">Tipo *</label>
+              <select id="tipo_bien" name="tipo_bien">
+                <option value="servicio">Servicio Odontológico</option>
+                <option value="producto">Producto Dental</option>
+              </select>
+            </div>
+            <div class="campo">
+              <label for="monto">Monto reclamado (S/.) opcional</label>
+              <input type="number" id="monto" name="monto" placeholder="0.00" />
+            </div>
+          </div>
+          <div class="campo">
+            <label for="descripcion_servicio">Descripción del tratamiento o servicio:</label>
+            <input type="text" id="descripcion_servicio" name="descripcion_servicio" placeholder="Ej. Evaluación clínica 3D, Ortodoncia, Limpieza, etc." />
+          </div>
+        </div>
+
+        <div class="form-seccion">
+          <h3>3. Detalle de la Reclamación</h3>
+          <div class="campo-tipo-reclamo">
+            <div class="radio-opcion">
+              <input type="radio" id="tipo_queja" name="tipo_proceso" value="queja" />
+              <label for="tipo_queja">
+                <strong>Queja:</strong>
+                <span>Malestar o descontento respecto a la atención al público (no relacionado directamente con el servicio prestado).</span>
+              </label>
+            </div>
+            <div class="radio-opcion">
+              <input type="radio" id="tipo_reclamo" name="tipo_proceso" value="reclamo" checked />
+              <label for="tipo_reclamo">
+                <strong>Reclamo:</strong>
+                <span>Disconformidad relacionada directamente a los servicios odontológicos o productos adquiridos.</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="campo">
+            <label for="detalle">Detalle de los hechos *</label>
+            <textarea id="detalle" name="detalle" rows="4" required placeholder="Explica detalladamente lo ocurrido..."></textarea>
+          </div>
+
+          <div class="campo">
+            <label for="pedido">Pedido o solicitud del consumidor *</label>
+            <textarea id="pedido" name="pedido" rows="3" required placeholder="¿Cuál es la solución o respuesta que solicitas?"></textarea>
+          </div>
+        </div>
+
+        <div class="form-seccion form-seccion--legal">
+          <div class="aviso-plazo">
+            <Icon name="clock" size={20} class="icono-oro" />
+            <p>
+              De conformidad con la normativa de INDECOPI, el proveedor deberá dar respuesta al reclamo o queja en un plazo no mayor a <strong>quince (15) días hábiles</strong> improrrogables a través del correo electrónico registrado.
+            </p>
+          </div>
+
+          <div class="consentimiento-check">
+            <input type="checkbox" id="acepto_terminos" name="acepto_terminos" required />
+            <label for="acepto_terminos">
+              Declaro ser el titular del reclamo o representante legal y que la información brindada es verídica. Acepto el tratamiento de mis datos personales según la Ley N° 29733.
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn--oro btn--bloque btn--lg" id="btn-enviar-reclamo">
+            <Icon name="document" size={20} />
+            <span>Registrar Hoja de Reclamación</span>
+          </button>
+        </div>
+
+        <!-- Mensaje de éxito oculto -->
+        <div class="mensaje-exito" id="mensaje-exito" hidden>
+          <div class="exito-icono">
+            <Icon name="check" size={32} />
+          </div>
+          <h4>¡Hoja de Reclamación Registrada con Éxito!</h4>
+          <p>
+            Hemos registrado tu hoja con el código: <strong id="codigo-reclamo">REC-2026-0042</strong>.
+          </p>
+          <p class="exito-copia">
+            Se ha enviado una copia íntegra con constancia digital a tu correo electrónico. Responderemos formalmente dentro del plazo legal de 15 días hábiles.
+          </p>
+          <a href="/" class="btn btn--linea">Regresar a la página principal</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  const form = document.getElementById('form-reclamacion') as HTMLFormElement | null;
+  const mensajeExito = document.getElementById('mensaje-exito');
+  const codigoReclamo = document.getElementById('codigo-reclamo');
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    // Generar código único aleatorio
+    const randomNum = Math.floor(1000 + Math.random() * 9000);
+    if (codigoReclamo) {
+      codigoReclamo.textContent = `REC-2026-${randomNum}`;
+    }
+
+    // Ocultar campos y mostrar confirmación
+    const secciones = form.querySelectorAll('.form-seccion');
+    secciones.forEach((s) => ((s as HTMLElement).style.display = 'none'));
+    if (mensajeExito) {
+      mensajeExito.removeAttribute('hidden');
+      mensajeExito.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  });
+</script>
+
+<style>
+  .reclamaciones-pagina {
+    background: var(--marfil);
+    min-height: 80vh;
+    padding-block: 4rem 6rem;
+  }
+
+  .contenedor--estrecho {
+    max-width: 820px;
+  }
+
+  .reclamaciones-volver {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--azul);
+    font-family: var(--f-acento);
+    font-weight: 600;
+    font-size: 0.88rem;
+    text-decoration: none;
+    margin-bottom: 2rem;
+    transition: transform var(--trans-rapida), color var(--trans-rapida);
+  }
+
+  .reclamaciones-volver:hover {
+    color: var(--oro);
+    transform: translateX(-4px);
+  }
+
+  .reclamaciones-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .reclamaciones-sello {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--f-acento);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--azul);
+    background: rgba(198, 161, 91, 0.15);
+    padding: 0.4rem 0.9rem;
+    border-radius: var(--radio-pill);
+    border: 1px solid rgba(198, 161, 91, 0.35);
+    margin-bottom: 1rem;
+  }
+
+  .reclamaciones-header h1 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    color: var(--azul);
+    margin: 0 0 0.5rem;
+  }
+
+  .reclamaciones-sub {
+    font-size: 1.05rem;
+    color: var(--texto-suave);
+    margin: 0 0 1.8rem;
+  }
+
+  .datos-establecimiento {
+    background: #FFFFFF;
+    border: 1px solid var(--piedra);
+    border-radius: var(--radio-md);
+    padding: 1.25rem 1.6rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem 1.5rem;
+    box-shadow: var(--sombra-sm);
+  }
+
+  .dato-empresa strong {
+    display: block;
+    font-family: var(--f-acento);
+    font-size: 0.78rem;
+    color: var(--texto-suave);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .dato-empresa span {
+    font-size: 0.92rem;
+    color: var(--azul);
+    font-weight: 500;
+  }
+
+  /* Formulario */
+  .reclamaciones-form {
+    background: #FFFFFF;
+    border: 1px solid var(--piedra);
+    border-radius: var(--radio-lg);
+    padding: clamp(1.8rem, 4vw, 3rem);
+    box-shadow: var(--sombra-md);
+  }
+
+  .form-seccion {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--piedra);
+  }
+
+  .form-seccion h3 {
+    font-size: 1.35rem;
+    color: var(--azul);
+    margin: 0 0 1.25rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid var(--oro);
+    display: inline-block;
+  }
+
+  .campos-grid-dos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .campos-doc {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 0.75rem;
+  }
+
+  .campo {
+    margin-bottom: 1.1rem;
+  }
+
+  .campo label {
+    display: block;
+    font-family: var(--f-acento);
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: var(--azul);
+    margin-bottom: 0.35rem;
+  }
+
+  .campo input,
+  .campo select,
+  .campo textarea {
+    width: 100%;
+    font: inherit;
+    font-size: 0.92rem;
+    color: var(--carbon);
+    padding: 0.75rem 1rem;
+    background: var(--marfil);
+    border: 1.5px solid var(--piedra);
+    border-radius: var(--radio-sm);
+    transition: border-color var(--trans-rapida);
+  }
+
+  .campo input:focus,
+  .campo select:focus,
+  .campo textarea:focus {
+    outline: none;
+    border-color: var(--turquesa);
+    background: #FFFFFF;
+    box-shadow: 0 0 0 3px rgba(46, 196, 182, 0.2);
+  }
+
+  .campo-tipo-reclamo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .radio-opcion {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: var(--marfil);
+    border: 1.5px solid var(--piedra);
+    border-radius: var(--radio-md);
+    cursor: pointer;
+  }
+
+  .radio-opcion input {
+    margin-top: 0.25rem;
+    accent-color: var(--azul);
+  }
+
+  .radio-opcion strong {
+    display: block;
+    font-family: var(--f-acento);
+    font-size: 0.92rem;
+    color: var(--azul);
+    margin-bottom: 0.2rem;
+  }
+
+  .radio-opcion span {
+    font-size: 0.78rem;
+    color: var(--texto-suave);
+    line-height: 1.4;
+    display: block;
+  }
+
+  .aviso-plazo {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    background: rgba(198, 161, 91, 0.12);
+    border: 1px solid rgba(198, 161, 91, 0.35);
+    padding: 1.1rem 1.4rem;
+    border-radius: var(--radio-md);
+    margin-bottom: 1.5rem;
+  }
+
+  .aviso-plazo p {
+    font-size: 0.85rem;
+    color: var(--carbon);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .consentimiento-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .consentimiento-check input {
+    margin-top: 0.2rem;
+    accent-color: var(--azul);
+  }
+
+  .consentimiento-check label {
+    font-size: 0.82rem;
+    color: var(--texto-suave);
+    line-height: 1.45;
+  }
+
+  .btn--lg {
+    padding: 1rem 1.8rem;
+    font-size: 1rem;
+  }
+
+  /* Mensaje de Éxito */
+  .mensaje-exito {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    background: #FFFFFF;
+  }
+
+  .exito-icono {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--azul);
+    color: var(--oro);
+    display: grid;
+    place-items: center;
+    margin: 0 auto 1.5rem;
+  }
+
+  .mensaje-exito h4 {
+    font-size: 1.8rem;
+    color: var(--azul);
+    margin: 0 0 0.75rem;
+  }
+
+  .mensaje-exito p {
+    font-size: 1rem;
+    color: var(--texto-suave);
+    margin: 0 0 0.5rem;
+  }
+
+  .exito-copia {
+    max-width: 480px;
+    margin: 0.5rem auto 2rem !important;
+    font-size: 0.88rem !important;
+  }
+
+  @media (max-width: 720px) {
+    .campos-grid-dos,
+    .datos-establecimiento,
+    .campo-tipo-reclamo {
+      grid-template-columns: 1fr;
+    }
+
+    .campos-doc {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

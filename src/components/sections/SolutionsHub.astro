@@ -1,0 +1,529 @@
+---
+import Icon from '../common/Icon.astro';
+import SectionHeader from '../common/SectionHeader.astro';
+
+const specialtyTabs = [
+  {
+    id: 'estetica',
+    label: 'Estética & Carillas',
+    icon: 'sparkle' as const,
+    title: 'Estética Dental Mínimamente Invasiva',
+    subtitle: 'Micro-carillas cerámicas de estratificación natural y diseño digital biomimético.',
+    description: 'Buscamos la armonía real de tu sonrisa sin dientes artificiales, planos ni blancos fosforescentes. Preservamos más del 90% del esmalte dental sano con maquetas previas (mockup) probadas en tu propia boca antes de cualquier procedimiento.',
+    image: '/images/smile-natural.jpg',
+    imageAlt: 'Macrofotografía clínica de sonrisa estética biomimética en Nova Smile Lima',
+    doctor: 'Dra. Valeria Montes (COP 28419)',
+    duration: '2 a 3 citas con maqueta previa',
+    idealFor: 'Bordes desgastados, microdoncia, asimetrías o manchas profundas',
+    ethicalBadge: 'Fotografía clínica real sin retoques · Consentimiento Ley N° 29733',
+    points: [
+      'Maqueta diagnóstica previa para ver el resultado antes de comenzar',
+      'Cerámicas ultradelgadas con translucidez natural idéntica al esmalte',
+      'Protocolo adhesivo conservador sin tallado destructivo'
+    ]
+  },
+  {
+    id: 'ortodoncia',
+    label: 'Ortodoncia Invisible',
+    icon: 'aligner' as const,
+    title: 'Alineadores Transparentes para Adultos',
+    subtitle: 'Alineación de alta precisión adaptada a tu agenda profesional y social.',
+    description: 'Placas transparentes removibles diseñadas por software 3D. Te permiten hablar, comer y asistir a reuniones con total naturalidad, mientras realizas tu higiene diaria sin la incomodidad ni las llagas de los brackets tradicionales.',
+    image: '/images/doctor-camila.jpg',
+    imageAlt: 'Dra. Camila Ferrer sosteniendo alineador transparente en Nova Smile Lima',
+    doctor: 'Dra. Camila Ferrer (COP 34512 / RNE 02210)',
+    duration: 'De 6 a 14 meses según planificación virtual 3D',
+    idealFor: 'Ejecutivos y adultos con apiñamiento o mordida alterada',
+    ethicalBadge: 'Simulación virtual precisa antes del primer alineador',
+    points: [
+      'Removibles para comer y cepillarte con absoluta comodidad',
+      'Monitoreo digital optimizado para minimizar visitas innecesarias',
+      'Tratamiento predecible sin urgencias por brackets desprendidos'
+    ]
+  },
+  {
+    id: 'implantes',
+    label: 'Implantología 3D',
+    icon: 'implant' as const,
+    title: 'Implantes Guiados por Tomografía Computarizada',
+    subtitle: 'Planificación volumétrica 3D para una colocación milimétrica y segura.',
+    description: 'Colocación de implantes de titanio y coronas de circonio asistida por férulas quirúrgicas impresas en 3D. Esta tecnología reduce drásticamente el tiempo de intervención, elimina incisiones innecesarias y favorece una recuperación postoperatoria serena.',
+    image: '/images/scanner-tech.jpg',
+    imageAlt: 'Planificación 3D y escáner digital en consultorio de Nova Smile Lima',
+    doctor: 'Dr. Andrés Salazar (COP 31904 / RNE 01895)',
+    duration: 'Procedimiento guiado en 40 - 60 minutos',
+    idealFor: 'Reposición de piezas dentales ausentes o deterioradas',
+    ethicalBadge: 'Criterio biológico: preservación ósea y papilar a largo plazo',
+    points: [
+      'Cirugía guiada por computador sin puntos ni cortes invasivos',
+      'Coronas atornilladas en circonio con perfil de emergencia natural',
+      'Anestesia localizada computarizada sin dolor'
+    ]
+  },
+  {
+    id: 'general',
+    label: 'Salud Integral & Prevención',
+    icon: 'tooth' as const,
+    title: 'Odontología General & Profilaxis Ultrasónica',
+    subtitle: 'Limpiezas profundas, control periodontal y restauraciones biológicas.',
+    description: 'El pilar fundamental de Nova Smile Lima. Limpiezas ultrasónicas con micromotor suave, eliminación de manchas por café o té y control minucioso de caries con magnificación óptica. Diseñado para personas que valoran la salud preventiva en un ambiente sereno.',
+    image: '/images/hero-clinic.jpg',
+    imageAlt: 'Consultorio boutique relajante en San Isidro para atención preventiva',
+    doctor: 'Equipo de Especialistas Colegiados Nova Smile Lima',
+    duration: '45 a 60 minutos por sesión',
+    idealFor: 'Chequeo anual, profilaxis profunda y control de sensibilidad',
+    ethicalBadge: 'Bioseguridad hospitalaria clase B y mínima invasión',
+    points: [
+      'Limpieza ultrasónica sin molestias en encías sensibles',
+      'Escaneo 3D incluido en tu control para monitorear desgastes',
+      'Ambiente libre de estrés con aromaterapia y música relajante'
+    ]
+  }
+];
+---
+
+<section class="seccion seccion--alterna soluciones-hub" id="tratamientos" aria-labelledby="soluciones-titulo">
+  <div class="contenedor">
+    <div class="reveal">
+      <SectionHeader
+        align="center"
+        kicker="Soluciones Clínicas & Resultados"
+        title="Tratamientos diseñados para durar, no para aparentar"
+        description="Agrupamos diagnósticos digitales 3D, casos clínicos reales documentados y especialistas colegiados en un formato interactivo y transparente."
+      />
+    </div>
+
+    <!-- Navegación de pestañas centrada por especialidad -->
+    <div class="tabs-nav-wrap reveal">
+      <div class="tabs-nav" role="tablist" aria-label="Especialidades clínicas de Nova Smile Lima">
+        {specialtyTabs.map((tab, index) => (
+          <button
+            type="button"
+            class:list={['tab-btn', { 'is-active': index === 0 }]}
+            role="tab"
+            aria-selected={index === 0 ? 'true' : 'false'}
+            aria-controls={`panel-${tab.id}`}
+            id={`tab-${tab.id}`}
+            data-tab={tab.id}
+          >
+            <Icon name={tab.icon} size={18} class="tab-icon" />
+            <span>{tab.label}</span>
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <!-- Contenido de las pestañas -->
+    <div class="tabs-content reveal" style="transition-delay: 0.15s;">
+      {specialtyTabs.map((tab, index) => (
+        <div
+          class:list={['tab-panel', { 'is-active': index === 0 }]}
+          id={`panel-${tab.id}`}
+          role="tabpanel"
+          aria-labelledby={`tab-${tab.id}`}
+          hidden={index !== 0}
+        >
+          <div class="panel-grid">
+            <!-- Columna Izquierda: Filosofía Clínica, Beneficios & Reserva -->
+            <div class="panel-info">
+              <span class="panel-tag">{tab.label.toUpperCase()}</span>
+              <h3>{tab.title}</h3>
+              <p class="panel-subtitle">{tab.subtitle}</p>
+              <p class="panel-desc">{tab.description}</p>
+
+              <div class="panel-puntos">
+                {tab.points.map((pt) => (
+                  <div class="panel-punto">
+                    <div class="punto-check">
+                      <Icon name="check" size={14} />
+                    </div>
+                    <span>{pt}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div class="panel-acciones">
+                <a class="btn btn--oro" href="#contacto" data-service={tab.title}>
+                  <Icon name="calendar" size={17} />
+                  <span>Reserva tu evaluación para {tab.label}</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Columna Derecha: Fotografía Clínica + Ficha Técnica de Confianza -->
+            <div class="panel-visual">
+              <div class="panel-foto-wrap">
+                <img
+                  src={tab.image}
+                  alt={tab.imageAlt}
+                  width="700"
+                  height="450"
+                  loading="lazy"
+                  decoding="async"
+                  class="panel-foto"
+                />
+                <div class="panel-badge-etico">
+                  <Icon name="shield" size={14} />
+                  <span>{tab.ethicalBadge}</span>
+                </div>
+              </div>
+
+              <!-- Ficha Técnica Resumen: Especialista, Tiempos e Indicaciones -->
+              <div class="panel-ficha">
+                <div class="ficha-item">
+                  <div class="ficha-icono-wrap">
+                    <Icon name="medal" size={15} class="icono-oro" />
+                  </div>
+                  <div class="ficha-item-texto">
+                    <strong>Especialista a Cargo</strong>
+                    <span>{tab.doctor}</span>
+                  </div>
+                </div>
+
+                <div class="ficha-item">
+                  <div class="ficha-icono-wrap">
+                    <Icon name="clock" size={15} class="icono-oro" />
+                  </div>
+                  <div class="ficha-item-texto">
+                    <strong>Tiempo Estimado</strong>
+                    <span>{tab.duration}</span>
+                  </div>
+                </div>
+
+                <div class="ficha-item">
+                  <div class="ficha-icono-wrap">
+                    <Icon name="star" size={15} class="icono-oro" />
+                  </div>
+                  <div class="ficha-item-texto">
+                    <strong>Perfil Recomendado</strong>
+                    <span>{tab.idealFor}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const tabButtons = document.querySelectorAll<HTMLButtonElement>('.tab-btn');
+  const tabPanels = document.querySelectorAll<HTMLElement>('.tab-panel');
+
+  tabButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.dataset.tab;
+      if (!targetId) return;
+
+      // Update buttons
+      tabButtons.forEach((b) => {
+        const isActive = b === btn;
+        b.classList.toggle('is-active', isActive);
+        b.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+
+      // Update panels
+      tabPanels.forEach((panel) => {
+        const isTarget = panel.id === `panel-${targetId}`;
+        panel.classList.toggle('is-active', isTarget);
+        if (isTarget) {
+          panel.removeAttribute('hidden');
+        } else {
+          panel.setAttribute('hidden', 'true');
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .soluciones-hub {
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Selector de Pestañas Centrado */
+  .tabs-nav-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .tabs-nav {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 0.45rem;
+    border-radius: var(--radio-pill);
+    border: 1px solid var(--piedra);
+    box-shadow: var(--sombra-sm);
+  }
+
+  .tab-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    background: transparent;
+    border: none;
+    padding: 0.75rem 1.35rem;
+    border-radius: var(--radio-pill);
+    font-family: var(--f-acento);
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: var(--azul);
+    cursor: pointer;
+    transition: all var(--trans-rapida);
+    line-height: 1;
+  }
+
+  .tab-btn:hover {
+    background: rgba(10, 37, 64, 0.06);
+    color: var(--azul-suave);
+  }
+
+  .tab-btn.is-active {
+    background: var(--azul);
+    color: var(--oro);
+    box-shadow: 0 4px 14px rgba(10, 37, 64, 0.25);
+  }
+
+  .tab-icon {
+    transition: transform var(--trans-rapida);
+  }
+
+  .tab-btn.is-active .tab-icon {
+    transform: scale(1.1);
+  }
+
+  /* Contenido de la pestaña activa */
+  .tabs-content {
+    background: #FFFFFF;
+    border: 1px solid var(--piedra);
+    border-radius: var(--radio-lg);
+    box-shadow: var(--sombra-md);
+    overflow: hidden;
+    max-width: 1100px;
+    margin-inline: auto;
+  }
+
+  .tab-panel {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .tab-panel.is-active {
+    display: block;
+    opacity: 1;
+    animation: fadeInPanel 0.4s ease-out;
+  }
+
+  @keyframes fadeInPanel {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Cuadrícula Simétrica 50 / 50 */
+  .panel-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: clamp(2rem, 4vw, 3.5rem);
+    padding: clamp(2.2rem, 4.5vw, 3.8rem);
+    align-items: start;
+  }
+
+  .panel-tag {
+    font-family: var(--f-acento);
+    font-size: 0.84rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--oro);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .panel-info h3 {
+    font-size: clamp(1.85rem, 2.8vw, 2.35rem);
+    margin: 0 0 0.5rem;
+    line-height: 1.15;
+  }
+
+  .panel-subtitle {
+    font-family: var(--f-acento);
+    font-size: 1.05rem;
+    color: var(--azul-suave);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    line-height: 1.45;
+  }
+
+  .panel-desc {
+    color: var(--texto-suave);
+    font-size: 1.02rem;
+    line-height: 1.6;
+    margin-bottom: 1.4rem;
+  }
+
+  .panel-puntos {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    margin-bottom: 2rem;
+  }
+
+  .panel-punto {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 1rem;
+    color: var(--carbon);
+    line-height: 1.45;
+  }
+
+  .punto-check {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(198, 161, 91, 0.16);
+    color: var(--oro);
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .panel-acciones {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  /* Columna Derecha: Visual + Ficha Médica */
+  .panel-visual {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .panel-foto-wrap {
+    position: relative;
+    aspect-ratio: 16 / 10.5;
+    border-radius: var(--radio-md);
+    overflow: hidden;
+    box-shadow: var(--sombra-md);
+    border: 1px solid var(--piedra);
+    background: var(--marfil-fuerte);
+  }
+
+  .panel-foto {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .panel-foto-wrap:hover .panel-foto {
+    transform: scale(1.04);
+  }
+
+  .panel-badge-etico {
+    position: absolute;
+    bottom: 0.85rem;
+    left: 0.85rem;
+    right: 0.85rem;
+    background: rgba(10, 37, 64, 0.92);
+    backdrop-filter: blur(8px);
+    color: var(--oro);
+    font-family: var(--f-acento);
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 0.45rem 0.85rem;
+    border-radius: var(--radio-pill);
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    border: 1px solid rgba(198, 161, 91, 0.4);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Ficha Técnica de Tratamiento (Equilibra la altura de la columna) */
+  .panel-ficha {
+    margin-top: 1.15rem;
+    padding: 1.1rem 1.25rem;
+    background: var(--marfil-fuerte);
+    border: 1px solid var(--piedra);
+    border-radius: var(--radio-md);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .ficha-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .ficha-icono-wrap {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(198, 161, 91, 0.16);
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    margin-top: 0.05rem;
+  }
+
+  .icono-oro {
+    color: var(--oro);
+  }
+
+  .ficha-item-texto strong {
+    display: block;
+    color: var(--azul);
+    font-family: var(--f-acento);
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.1rem;
+  }
+
+  .ficha-item-texto span {
+    display: block;
+    color: var(--carbon);
+    font-size: 0.94rem;
+    line-height: 1.4;
+  }
+
+  @media (max-width: 960px) {
+    .panel-grid {
+      grid-template-columns: 1fr;
+      padding: 1.8rem;
+    }
+    .tabs-nav {
+      width: 100%;
+      border-radius: var(--radio-lg);
+    }
+    .tab-btn {
+      flex: 1 1 calc(50% - 0.5rem);
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 580px) {
+    .tab-btn {
+      flex: 1 1 100%;
+    }
+  }
+</style>

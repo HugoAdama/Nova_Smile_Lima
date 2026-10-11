@@ -1,0 +1,300 @@
+---
+import Icon from '../common/Icon.astro';
+import SectionHeader from '../common/SectionHeader.astro';
+import { treatments } from '../../data/treatments';
+---
+
+<section class="seccion seccion--alterna" id="tratamientos" aria-labelledby="tratamientos-titulo">
+  <div class="contenedor">
+    <div class="reveal">
+      <SectionHeader
+        kicker="Especialidades Clínicas"
+        title="Tratamientos para cada etapa de tu sonrisa"
+        description="Cada plan se diseña tras una evaluación digital integral, con tiempos claros, beneficios biológicos y costos definidos desde el primer día."
+      />
+    </div>
+
+    <div class="tratamientos reveal-stagger reveal">
+      {treatments.map((t) => (
+        <article class="tratamiento" id={`tratamiento-${t.id}`}>
+          <div class="tratamiento__borde-glow" aria-hidden="true"></div>
+
+          <div class="tratamiento__icono-wrap">
+            <Icon name={t.icon} size={28} class="tratamiento__icono" />
+          </div>
+
+          <div class="tratamiento__cuerpo">
+            <div class="tratamiento__cabecera">
+              <h3>{t.title}</h3>
+              {t.highlight && (
+                <span class="tratamiento__etiqueta">
+                  <span class="etiqueta-dot"></span>
+                  <span>Destacado</span>
+                </span>
+              )}
+            </div>
+
+            <p class="tratamiento__desc-corta">{t.shortDesc}</p>
+            <p class="tratamiento__desc-larga">{t.fullDesc}</p>
+
+            <div class="tratamiento__meta">
+              <div class="tratamiento__meta-item">
+                <Icon name="clock" size={16} class="meta-icon" />
+                <span>{t.duration}</span>
+              </div>
+              <div class="tratamiento__meta-item">
+                <Icon name="star" size={16} class="meta-icon" />
+                <span>Ideal: {t.idealFor}</span>
+              </div>
+            </div>
+
+            <div class="tratamiento__accion">
+              <a href="#agenda" class="enlace-flecha" data-treatment={t.title}>
+                <span>Solicitar evaluación para este tratamiento</span>
+                <Icon name="arrow-right" size={14} />
+              </a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="tratamientos__cta-bloque reveal" style="transition-delay: 0.25s;">
+      <div class="tratamientos__cta-tarjeta">
+        <div class="tratamientos__cta-info">
+          <h3>¿No estás seguro de cuál es el tratamiento indicado?</h3>
+          <p>Nuestra evaluación inicial incluye escaneo 3D y diagnóstico fotográfico para orientarte con honestidad médica.</p>
+        </div>
+        <a class="btn btn--oro" href="#agenda">
+          <Icon name="calendar" size={18} />
+          <span>Consultar disponibilidad</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .tratamientos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+  }
+
+  .tratamiento {
+    background: #FFFFFF;
+    border: 1px solid var(--piedra);
+    border-radius: var(--radio-lg);
+    padding: clamp(1.8rem, 3vw, 2.6rem);
+    display: grid;
+    grid-template-columns: 58px 1fr;
+    gap: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform var(--trans-media),
+                box-shadow var(--trans-media),
+                border-color var(--trans-media);
+    box-shadow: var(--sombra-sm);
+  }
+
+  /* Línea superior dorada animada en hover */
+  .tratamiento__borde-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--turquesa), var(--oro), var(--turquesa));
+    opacity: 0;
+    transform: scaleX(0.3);
+    transition: opacity var(--trans-media), transform var(--trans-media);
+  }
+
+  .tratamiento:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--sombra-lg), 0 0 25px rgba(198, 161, 91, 0.15);
+    border-color: rgba(198, 161, 91, 0.45);
+  }
+
+  .tratamiento:hover .tratamiento__borde-glow {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+
+  .tratamiento__icono-wrap {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: var(--marfil-fuerte);
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    transition: background-color var(--trans-media),
+                transform var(--trans-media),
+                box-shadow var(--trans-media);
+  }
+
+  .tratamiento:hover .tratamiento__icono-wrap {
+    background-color: var(--azul);
+    transform: scale(1.08) rotate(6deg);
+    box-shadow: 0 8px 20px rgba(10, 37, 64, 0.25);
+  }
+
+  .tratamiento__icono {
+    color: var(--azul);
+    transition: color var(--trans-media), transform var(--trans-media);
+  }
+
+  .tratamiento:hover .tratamiento__icono {
+    color: var(--oro);
+    transform: scale(1.05);
+  }
+
+  .tratamiento__cabecera {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.8rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .tratamiento__cabecera h3 {
+    margin: 0;
+    font-size: 1.45rem;
+    line-height: 1.25;
+  }
+
+  .tratamiento__etiqueta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: var(--f-acento);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background: rgba(198, 161, 91, 0.15);
+    color: #8C6A24;
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--radio-pill);
+    white-space: nowrap;
+    border: 1px solid rgba(198, 161, 91, 0.3);
+  }
+
+  .etiqueta-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--oro);
+    animation: dotPing 2.5s ease-in-out infinite;
+  }
+
+  .tratamiento__desc-corta {
+    color: var(--azul);
+    font-weight: 500;
+    font-size: 0.98rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+  }
+
+  .tratamiento__desc-larga {
+    color: var(--texto-suave);
+    font-size: 0.92rem;
+    line-height: 1.55;
+    margin-bottom: 1rem;
+  }
+
+  .tratamiento__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    padding-block: 0.85rem;
+    border-top: 1px solid var(--piedra);
+    border-bottom: 1px solid var(--piedra);
+    margin-bottom: 1.1rem;
+  }
+
+  .tratamiento__meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-size: 0.86rem;
+    color: var(--texto-suave);
+  }
+
+  .meta-icon {
+    color: var(--oro);
+    flex-shrink: 0;
+  }
+
+  .tratamiento__accion {
+    margin-top: 0.5rem;
+  }
+
+  .tratamientos__cta-bloque {
+    margin-top: 3.8rem;
+  }
+
+  .tratamientos__cta-tarjeta {
+    background: linear-gradient(145deg, var(--azul) 0%, var(--azul-suave) 70%, #061626 100%);
+    color: var(--marfil);
+    border-radius: var(--radio-lg);
+    padding: clamp(2.2rem, 4.5vw, 3.2rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+    box-shadow: var(--sombra-lg), 0 0 0 1px rgba(198, 161, 91, 0.25);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tratamientos__cta-tarjeta::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(198, 161, 91, 0.15), transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .tratamientos__cta-info {
+    max-width: 620px;
+  }
+
+  .tratamientos__cta-tarjeta h3 {
+    color: var(--marfil);
+    font-size: clamp(1.45rem, 2.3vw, 1.95rem);
+    margin-bottom: 0.5rem;
+  }
+
+  .tratamientos__cta-tarjeta p {
+    color: #C9D3DE;
+    margin: 0;
+    font-size: 1.02rem;
+    line-height: 1.55;
+  }
+
+  @media (max-width: 960px) {
+    .tratamientos {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 580px) {
+    .tratamiento {
+      grid-template-columns: 1fr;
+    }
+    .tratamiento__icono-wrap {
+      margin-bottom: 0.5rem;
+    }
+    .tratamientos__cta-tarjeta {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

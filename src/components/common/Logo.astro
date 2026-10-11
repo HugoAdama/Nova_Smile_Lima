@@ -1,0 +1,86 @@
+---
+interface Props {
+  variant?: 'light' | 'dark';
+  class?: string;
+}
+
+const { variant = 'dark', class: className = '' } = Astro.props;
+---
+
+<a href="/" class:list={['logo', `logo--${variant}`, className]} aria-label="Nova Smile Lima, inicio">
+  <svg class="logo__simbolo" viewBox="0 0 48 48" aria-hidden="true" width="42" height="42">
+    <circle cx="24" cy="24" r="22.5" fill="none" stroke="#C6A15B" stroke-width="1.2" />
+    <path
+      d="M14 35V15c0-1.5 1.8-2.2 2.8-1L31 31c1 1.2 2.8.5 2.8-1V13"
+      fill="none"
+      stroke={variant === 'light' ? '#F7F3EC' : '#0A2540'}
+      stroke-width="3"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M13 36.5c6 4 16 4 22 0"
+      fill="none"
+      stroke="#C6A15B"
+      stroke-width="1.6"
+      stroke-linecap="round"
+    />
+    <path
+      d="M36 8c.3 2.3 1.2 3.2 3.5 3.5-2.3.3-3.2 1.2-3.5 3.5-.3-2.3-1.2-3.2-3.5-3.5C34.8 11.2 35.7 10.3 36 8z"
+      fill="#C6A15B"
+    />
+  </svg>
+  <span class="logo__texto">
+    <span class="logo__nombre">NOVA SMILE</span>
+    <span class="logo__lima">LIMA</span>
+  </span>
+</a>
+
+<style>
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    line-height: 1;
+    transition: opacity var(--trans-rapida);
+  }
+
+  .logo:hover {
+    opacity: 0.9;
+  }
+
+  .logo__simbolo {
+    flex-shrink: 0;
+  }
+
+  .logo__texto {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .logo__nombre {
+    font-family: var(--f-titulo);
+    font-weight: 600;
+    font-size: 1.35rem;
+    letter-spacing: 0.14em;
+    color: var(--azul);
+  }
+
+  .logo__lima {
+    font-family: var(--f-cuerpo);
+    font-size: 0.62rem;
+    letter-spacing: 0.42em;
+    margin-top: 0.3rem;
+    color: var(--texto-suave);
+    font-weight: 500;
+  }
+
+  .logo--light .logo__nombre {
+    color: var(--marfil);
+  }
+
+  .logo--light .logo__lima {
+    color: #9FB0C2;
+  }
+</style>

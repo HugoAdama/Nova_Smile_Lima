@@ -1,0 +1,137 @@
+---
+import Icon from '../common/Icon.astro';
+
+const trustItems = [
+  {
+    icon: 'cube' as const,
+    title: 'Tecnología 3D Digital',
+    desc: 'Escáner intraoral sin pastas'
+  },
+  {
+    icon: 'medal' as const,
+    title: 'Especialistas Certificados',
+    desc: 'Registro COP & RNE en regla'
+  },
+  {
+    icon: 'shield' as const,
+    title: 'Bioseguridad Hospitalaria',
+    desc: 'Esterilización clase B certificada'
+  },
+  {
+    icon: 'document' as const,
+    title: 'Presupuestos Transparentes',
+    desc: 'Planes claros sin letra chica'
+  }
+];
+---
+
+<section class="confianza" aria-label="Garantías y estándares clínicos de Nova Smile Lima">
+  <div class="contenedor">
+    <ul class="confianza__lista reveal-stagger reveal">
+      {trustItems.map((item) => (
+        <li class="confianza__item">
+          <div class="confianza__icono-wrap">
+            <Icon name={item.icon} size={22} class="confianza__icono" />
+          </div>
+          <div class="confianza__texto">
+            <strong>{item.title}</strong>
+            <span>{item.desc}</span>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .confianza {
+    background-color: var(--azul);
+    color: var(--marfil);
+    padding-block: 2rem;
+    border-top: 1px solid rgba(198, 161, 91, 0.25);
+    border-bottom: 1px solid rgba(198, 161, 91, 0.25);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .confianza::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent 0%, rgba(198, 161, 91, 0.05) 50%, transparent 100%);
+    pointer-events: none;
+  }
+
+  .confianza__lista {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem clamp(1.5rem, 4vw, 3rem);
+    max-width: 960px;
+    margin-inline: auto;
+  }
+
+  .confianza__item {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    padding: 0.85rem 1.25rem;
+    border-radius: var(--radio-md);
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(198, 161, 91, 0.18);
+    transition: background-color var(--trans-rapida), border-color var(--trans-rapida), transform var(--trans-rapida);
+  }
+
+  .confianza__item:hover {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(198, 161, 91, 0.45);
+    transform: translateY(-2px);
+  }
+
+  .confianza__icono-wrap {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(198, 161, 91, 0.14);
+    border: 1px solid rgba(198, 161, 91, 0.35);
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    transition: transform var(--trans-rapida), background-color var(--trans-rapida), box-shadow var(--trans-rapida);
+  }
+
+  .confianza__item:hover .confianza__icono-wrap {
+    transform: scale(1.1) rotate(5deg);
+    background: rgba(198, 161, 91, 0.25);
+    box-shadow: 0 0 15px rgba(198, 161, 91, 0.4);
+  }
+
+  .confianza__icono {
+    color: var(--oro);
+    transition: transform var(--trans-rapida);
+  }
+
+  .confianza__texto strong {
+    display: block;
+    font-family: var(--f-acento);
+    font-weight: 600;
+    font-size: 1.02rem;
+    color: var(--marfil);
+    line-height: 1.3;
+  }
+
+  .confianza__texto span {
+    font-size: 0.9rem;
+    color: #BAC9D8;
+    line-height: 1.35;
+  }
+
+  @media (max-width: 580px) {
+    .confianza__lista {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+</style>

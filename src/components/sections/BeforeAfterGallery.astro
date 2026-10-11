@@ -1,0 +1,315 @@
+---
+import Icon from '../common/Icon.astro';
+import SectionHeader from '../common/SectionHeader.astro';
+import { galleryCases } from '../../data/gallery';
+---
+
+<section class="seccion" id="galeria" aria-labelledby="galeria-titulo">
+  <div class="contenedor">
+    <div class="reveal">
+      <SectionHeader
+        kicker="Resultados Clínicos Éticos"
+        title="Casos documentados: estética natural sin engaños"
+        description="Cumplimiento RF-11 y RNF-10: Casos clínicos reales fotografiados bajo luz estandarizada, sin retoques digitales de color ni promesas milagrosas. Exhibidos con consentimiento informado bajo Ley N° 29733."
+      />
+    </div>
+
+    <div class="galeria__rejilla">
+      <div class="galeria__destacado reveal" style="transition-delay: 0.1s;">
+        <div class="galeria__imagen-wrap">
+          <img
+            src="/images/smile-natural.jpg"
+            alt="Detalle macro de estética dental biomimética natural en paciente de Nova Smile Lima"
+            width="900"
+            height="600"
+            loading="lazy"
+            decoding="async"
+            class="galeria__imagen"
+          />
+          <div class="galeria__badge-etico">
+            <Icon name="shield" size={16} />
+            <span>Sin retoques de color · Consentimiento verificado</span>
+          </div>
+        </div>
+
+        <div class="galeria__destacado-info">
+          <div class="galeria__destacado-head">
+            <span class="galeria__destacado-tag">Caso destacado · Estética Biomimética</span>
+            <h3>Armonía y textura natural del esmalte</h3>
+          </div>
+          <p>
+            Reconstrucción estética preservando la translucidez incisal natural y la arquitectura gingival, sin desgaste perjudicial de la estructura dental sana.
+          </p>
+          <div class="galeria__destacado-puntos">
+            <div class="galeria__punto">
+              <strong>Procedimiento:</strong>
+              <span>Micro-carillas de cerámica feldespática</span>
+            </div>
+            <div class="galeria__punto">
+              <strong>Tiempo total:</strong>
+              <span>3 citas (incluyendo prueba de maqueta previa)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="galeria__casos-lista reveal-stagger reveal" style="transition-delay: 0.2s;">
+        {galleryCases.map((c) => (
+          <article class="caso-tarjeta">
+            <div class="caso-tarjeta__header">
+              <span class="caso-tarjeta__categoria">{c.category.toUpperCase()}</span>
+              <span class="caso-tarjeta__consentimiento">
+                <Icon name="check" size={14} />
+                <span>Consentimiento N° 29733</span>
+              </span>
+            </div>
+
+            <h4>{c.title}</h4>
+            <p class="caso-tarjeta__tratamiento">
+              <strong>Tratamiento:</strong> {c.treatment} ({c.timeframe})
+            </p>
+            <p class="caso-tarjeta__objetivo">
+              {c.clinicalObjective}
+            </p>
+
+            <div class="caso-tarjeta__aviso">
+              <Icon name="shield" size={14} />
+              <span>{c.ethicalNote}</span>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+
+    <div class="galeria__aviso-legal">
+      <Icon name="shield" size={20} class="icono-oro" />
+      <p>
+        <strong>Compromiso deontológico de Nova Smile Lima:</strong> Cada caso clínico es único y los resultados dependen de las características anatómicas y biológicas de cada persona. No realizamos tratamientos estéticos sin antes asegurar la salud gingival y oclusal del paciente.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .galeria__rejilla {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: clamp(1.8rem, 4vw, 3rem);
+    align-items: start;
+  }
+
+  .galeria__destacado {
+    background: #FFFFFF;
+    border: 1px solid var(--piedra);
+    border-radius: var(--radio-lg);
+    overflow: hidden;
+    box-shadow: var(--sombra-md);
+  }
+
+  .galeria__imagen-wrap {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: var(--marfil-fuerte);
+  }
+
+  .galeria__imagen {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .galeria__destacado:hover .galeria__imagen {
+    transform: scale(1.02);
+  }
+
+  .galeria__badge-etico {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    background: rgba(10, 37, 64, 0.9);
+    backdrop-filter: blur(8px);
+    color: var(--oro);
+    font-size: 0.76rem;
+    font-family: var(--f-acento);
+    font-weight: 600;
+    padding: 0.45rem 0.85rem;
+    border-radius: var(--radio-pill);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    border: 1px solid rgba(198, 161, 91, 0.4);
+  }
+
+  .galeria__destacado-info {
+    padding: clamp(1.5rem, 3vw, 2.2rem);
+  }
+
+  .galeria__destacado-tag {
+    font-family: var(--f-acento);
+    font-size: 0.76rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--oro);
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  .galeria__destacado-info h3 {
+    margin: 0 0 0.8rem;
+    font-size: 1.55rem;
+  }
+
+  .galeria__destacado-info p {
+    color: var(--texto-suave);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+
+  .galeria__destacado-puntos {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--piedra);
+  }
+
+  .galeria__punto {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: 0.86rem;
+  }
+
+  .galeria__punto strong {
+    color: var(--azul);
+    font-family: var(--f-acento);
+  }
+
+  .galeria__punto span {
+    color: var(--texto-suave);
+    text-align: right;
+  }
+
+  .galeria__casos-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .caso-tarjeta {
+    background: #FFFFFF;
+    border: 1px solid var(--piedra);
+    border-radius: var(--radio-md);
+    padding: 1.4rem 1.6rem;
+    transition: transform var(--trans-rapida), box-shadow var(--trans-rapida), border-color var(--trans-rapida);
+  }
+
+  .caso-tarjeta:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-md);
+    border-color: rgba(198, 161, 91, 0.4);
+  }
+
+  .caso-tarjeta__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .caso-tarjeta__categoria {
+    font-family: var(--f-acento);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--azul);
+  }
+
+  .caso-tarjeta__consentimiento {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: var(--f-acento);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #1A8246;
+    background: rgba(31, 170, 89, 0.1);
+    padding: 0.2rem 0.55rem;
+    border-radius: var(--radio-pill);
+  }
+
+  .caso-tarjeta h4 {
+    margin: 0 0 0.4rem;
+    font-size: 1.22rem;
+    color: var(--azul);
+  }
+
+  .caso-tarjeta__tratamiento {
+    font-size: 0.88rem;
+    color: var(--azul-suave);
+    margin: 0 0 0.5rem;
+  }
+
+  .caso-tarjeta__objetivo {
+    font-size: 0.88rem;
+    color: var(--texto-suave);
+    line-height: 1.5;
+    margin: 0 0 0.8rem;
+  }
+
+  .caso-tarjeta__aviso {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    color: #7D8895;
+    line-height: 1.4;
+    padding-top: 0.6rem;
+    border-top: 1px dashed var(--piedra);
+  }
+
+  .caso-tarjeta__aviso svg {
+    color: var(--oro);
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .galeria__aviso-legal {
+    margin-top: 2.5rem;
+    padding: 1.4rem 1.8rem;
+    background: rgba(247, 243, 236, 0.8);
+    border: 1px solid var(--piedra);
+    border-radius: var(--radio-md);
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .icono-oro {
+    color: var(--oro);
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+  }
+
+  .galeria__aviso-legal p {
+    font-size: 0.88rem;
+    color: var(--texto-suave);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .galeria__aviso-legal strong {
+    color: var(--azul);
+  }
+
+  @media (max-width: 960px) {
+    .galeria__rejilla {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

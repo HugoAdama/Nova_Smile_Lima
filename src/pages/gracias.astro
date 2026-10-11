@@ -1,0 +1,147 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/common/Icon.astro';
+import { siteConfig } from '../data/site';
+---
+
+<Layout
+  title="¡Solicitud Recibida! | Nova Smile Lima"
+  description="Confirmación de recepción de tu solicitud de evaluación en Nova Smile Lima."
+>
+  <div class="gracias-page">
+    <div class="contenedor">
+      <div class="gracias-card">
+        <div class="gracias-icono-wrap">
+          <Icon name="check" size={36} class="gracias-check" />
+        </div>
+
+        <span class="kicker">Solicitud Registrada con Éxito</span>
+        <h1>Gracias por confiar en Nova Smile Lima</h1>
+        <p class="gracias-lead">
+          Hemos recibido tu solicitud de evaluación. Nuestro equipo de recepción clínica en San Isidro se comunicará contigo vía WhatsApp o teléfono en un plazo máximo de <strong>2 horas hábiles</strong> para confirmar fecha y hora exactas.
+        </p>
+
+        <div class="gracias-detalles">
+          <div class="gracias-detalle-item">
+            <Icon name="shield" size={20} class="icono-oro" />
+            <div>
+              <strong>Diagnóstico 3D Incluido</strong>
+              <span>Tu cita incluye escaneo intraoral digital sin pastas y fotografía diagnóstica.</span>
+            </div>
+          </div>
+          <div class="gracias-detalle-item">
+            <Icon name="pin" size={20} class="icono-oro" />
+            <div>
+              <strong>Ubicación & Estacionamiento</strong>
+              <span>{siteConfig.address.street}, {siteConfig.address.district} (Estacionamiento privado disponible).</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gracias-acciones">
+          <a class="btn btn--oro" href="/">
+            <span>Volver a la página principal</span>
+          </a>
+          <a
+            class="btn btn--linea"
+            href={`https://wa.me/${siteConfig.contact.whatsappClean}?text=Hola,%20acabo%20de%20enviar%20el%20formulario%20de%20reserva`}
+            target="_blank"
+            rel="noopener"
+          >
+            <Icon name="whatsapp" size={18} />
+            <span>Confirmar de inmediato por WhatsApp</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .gracias-page {
+    padding-block: clamp(4rem, 8vw, 7rem);
+    background: radial-gradient(circle at 50% 30%, rgba(198, 161, 91, 0.1), transparent 60%),
+                var(--marfil);
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .gracias-card {
+    background: #FFFFFF;
+    border: 1px solid var(--piedra);
+    border-radius: var(--radio-lg);
+    padding: clamp(2rem, 5vw, 4rem);
+    max-width: 740px;
+    margin-inline: auto;
+    text-align: center;
+    box-shadow: var(--sombra-lg);
+  }
+
+  .gracias-icono-wrap {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: rgba(46, 196, 182, 0.15);
+    color: var(--turquesa);
+    display: grid;
+    place-items: center;
+    margin: 0 auto 1.5rem;
+  }
+
+  .gracias-card h1 {
+    font-size: clamp(2rem, 3.8vw, 3rem);
+    margin: 0.5rem 0 1rem;
+    color: var(--azul);
+  }
+
+  .gracias-lead {
+    color: var(--texto-suave);
+    font-size: 1.1rem;
+    line-height: 1.65;
+    margin: 0 auto 2rem;
+    max-width: 58ch;
+  }
+
+  .gracias-detalles {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    padding: 1.8rem;
+    background: var(--marfil-fuerte);
+    border-radius: var(--radio-md);
+    margin-bottom: 2.5rem;
+    text-align: left;
+  }
+
+  .gracias-detalle-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+  }
+
+  .icono-oro {
+    color: var(--oro);
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+  }
+
+  .gracias-detalle-item strong {
+    display: block;
+    font-family: var(--f-acento);
+    font-size: 0.95rem;
+    color: var(--azul);
+  }
+
+  .gracias-detalle-item span {
+    font-size: 0.88rem;
+    color: var(--texto-suave);
+  }
+
+  .gracias-acciones {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+</style>

@@ -1,0 +1,196 @@
+---
+import Icon from '../common/Icon.astro';
+import SectionHeader from '../common/SectionHeader.astro';
+import { testimonials } from '../../data/testimonials';
+---
+
+<section class="seccion seccion--alterna" id="testimonios" aria-labelledby="testimonios-titulo">
+  <div class="contenedor">
+    <div class="reveal">
+      <SectionHeader
+        kicker="Confianza & Experiencias Reales"
+        title="Resultados naturales, historias reales"
+        description="Cumplimiento RF-10: Testimonios de pacientes con consentimiento informado expreso bajo la Ley N° 29733 de Protección de Datos Personales del Perú."
+      />
+    </div>
+
+    <div class="testimonios reveal-stagger reveal" tabindex="0" role="region" aria-label="Testimonios de pacientes">
+      {testimonials.map((t) => (
+        <figure class="testimonio">
+          <div class="testimonio__calificacion" aria-label={`Calificación: ${t.rating} de 5 estrellas`}>
+            {Array.from({ length: t.rating }).map(() => (
+              <Icon name="star" size={16} class="estrella-oro" />
+            ))}
+          </div>
+
+          <blockquote>
+            “{t.quote}”
+          </blockquote>
+
+          <footer>
+            <div class="testimonio__avatar" aria-hidden="true">
+              {t.avatarInitial}
+            </div>
+            <div class="testimonio__autor">
+              <div class="testimonio__nombre-fila">
+                <strong>{t.name}</strong>
+                {t.consentVerified && (
+                  <span class="testimonio__consent-badge" title="Consentimiento informado verificado">
+                    <Icon name="check" size={12} />
+                    <span>Verificado</span>
+                  </span>
+                )}
+              </div>
+              <span class="testimonio__tratamiento">{t.treatment}</span>
+            </div>
+          </footer>
+        </figure>
+      ))}
+    </div>
+
+    <div class="testimonios__pie">
+      <p class="testimonios__nota">
+        <Icon name="shield" size={16} class="icono-oro" />
+        <span>Testimonios documentados para fines informativos y de portafolio médico. Los resultados clínicos varían de acuerdo a las condiciones particulares de cada paciente.</span>
+      </p>
+
+      <div class="testimonios__cta">
+        <a class="btn btn--oro" href="#agenda">
+          <Icon name="calendar" size={18} />
+          <span>Agenda tu evaluación</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonios {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.8rem;
+  }
+
+  .testimonio {
+    margin: 0;
+    background: #FFFFFF;
+    border: 1px solid var(--piedra);
+    border-radius: var(--radio-lg);
+    padding: clamp(1.8rem, 3.5vw, 2.4rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.4rem;
+    box-shadow: var(--sombra-sm);
+    transition: transform var(--trans-rapida), box-shadow var(--trans-rapida);
+  }
+
+  .testimonio:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--sombra-md);
+  }
+
+  .testimonio__calificacion {
+    display: flex;
+    gap: 0.25rem;
+  }
+
+  .estrella-oro {
+    color: var(--oro);
+  }
+
+  .testimonio blockquote {
+    margin: 0;
+    font-family: var(--f-titulo);
+    font-size: clamp(1.35rem, 2.2vw, 1.65rem);
+    line-height: 1.35;
+    color: var(--azul);
+    font-weight: 500;
+  }
+
+  .testimonio footer {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--piedra);
+  }
+
+  .testimonio__avatar {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--salvia);
+    color: var(--azul);
+    display: grid;
+    place-items: center;
+    font-family: var(--f-acento);
+    font-weight: 700;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .testimonio__nombre-fila {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .testimonio__autor strong {
+    display: block;
+    font-family: var(--f-acento);
+    font-size: 0.95rem;
+    color: var(--azul);
+  }
+
+  .testimonio__consent-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.7rem;
+    color: #178343;
+    background: rgba(31, 170, 89, 0.1);
+    padding: 0.15rem 0.45rem;
+    border-radius: var(--radio-pill);
+    font-family: var(--f-acento);
+    font-weight: 600;
+  }
+
+  .testimonio__tratamiento {
+    font-size: 0.84rem;
+    color: var(--texto-suave);
+    display: block;
+  }
+
+  .testimonios__pie {
+    margin-top: 2.8rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .testimonios__nota {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    color: var(--texto-suave);
+    margin: 0;
+    max-width: 68ch;
+    line-height: 1.5;
+  }
+
+  .icono-oro {
+    color: var(--oro);
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+  }
+
+  @media (max-width: 860px) {
+    .testimonios {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,49 @@
+---
+interface Props {
+  kicker?: string;
+  title: string;
+  description?: string;
+  theme?: 'light' | 'dark';
+  align?: 'left' | 'center';
+  class?: string;
+}
+
+const {
+  kicker,
+  title,
+  description,
+  theme = 'light',
+  align = 'left',
+  class: className = ''
+} = Astro.props;
+---
+
+<header class:list={['cabecera-seccion', `cabecera--${align}`, `cabecera--${theme}`, className]}>
+  {kicker && <span class="kicker">{kicker}</span>}
+  <h2>{title}</h2>
+  {description && <p>{description}</p>}
+</header>
+
+<style>
+  .cabecera-seccion {
+    max-width: 740px;
+    margin-bottom: clamp(2rem, 5vw, 3.5rem);
+  }
+
+  .cabecera--center {
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .cabecera--center .kicker {
+    justify-content: center;
+  }
+
+  .cabecera--dark h2 {
+    color: var(--marfil);
+  }
+
+  .cabecera--dark p {
+    color: #C9D3DE;
+  }
+</style>

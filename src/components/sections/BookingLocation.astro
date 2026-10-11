@@ -1,0 +1,933 @@
+---
+import Icon from '../common/Icon.astro';
+import SectionHeader from '../common/SectionHeader.astro';
+import { siteConfig } from '../../data/site';
+import { treatments } from '../../data/treatments';
+import { faqs } from '../../data/faqs';
+
+const categories = [
+  { id: 'todos', label: 'Todas' },
+  { id: 'dolor', label: 'Dolor & Anestesia' },
+  { id: 'costos', label: 'Costos & Presupuestos' },
+  { id: 'seguros', label: 'EPS & Seguros' },
+  { id: 'tecnologia', label: 'Tecnología 3D' }
+];
+
+const waFastTrackUrl = `https://wa.me/${siteConfig.contact.whatsappClean}?text=${encodeURIComponent('Hola Nova Smile Lima, deseo coordinar una cita de evaluación directamente por WhatsApp.')}`;
+---
+
+<section class="seccion seccion--azul contacto-seccion" id="contacto" aria-labelledby="contacto-titulo">
+  <!-- Ancla para navegación interna por #agenda y #contacto -->
+  <div id="agenda" class="ancla-offset" aria-hidden="true"></div>
+
+  <div class="contenedor">
+    <div class="reveal">
+      <SectionHeader
+        kicker="Citas & Ubicación en San Isidro"
+        title="Tu sonrisa en San Isidro: evaluación en 3D y presupuesto cerrado"
+        description="Elige tu canal preferido: confirma tu cita mediante el formulario digital o contáctanos de inmediato vía WhatsApp con nuestro concierge."
+        theme="dark"
+      />
+    </div>
+
+    <!-- Rejilla Principal: Sede Presencial vs Formulario de Reserva (Perfecta Simetría 50/50) -->
+    <div class="contacto-grid">
+      <!-- Columna 1: Pabellón Sede San Isidro -->
+      <div class="pabellon-sede reveal">
+        <div class="pabellon-sede__header">
+          <h3>Sede San Isidro Boutique</h3>
+          <p>Ambiente clínico sereno, tecnología digital 3D y atención personalizada.</p>
+        </div>
+
+        <div class="sede-foto-wrap">
+          <img
+            src="/images/lounge-reception.jpg"
+            alt="Lounge de recepción de Nova Smile Lima en San Isidro"
+            width="750"
+            height="460"
+            loading="lazy"
+            decoding="async"
+            class="sede-foto"
+          />
+          <div class="sede-chip">
+            <Icon name="pin" size={14} />
+            <span>{siteConfig.address.district}, Lima</span>
+          </div>
+          <div class="sede-badge-acreditacion">
+            <Icon name="medal" size={14} />
+            <span>Colegio Odontológico COP 28419</span>
+          </div>
+        </div>
+
+        <div class="sede-datos">
+          <div class="sede-dato">
+            <Icon name="pin" size={20} class="icono-oro" />
+            <div>
+              <strong>Ubicación Boutique</strong>
+              <span>{siteConfig.address.street}</span>
+              <span class="sede-ref">{siteConfig.address.reference}</span>
+            </div>
+          </div>
+
+          <div class="sede-dato">
+            <Icon name="clock" size={20} class="icono-oro" />
+            <div>
+              <strong>Horarios de Atención</strong>
+              <span>{siteConfig.schedule.weekdays}</span>
+              <span>{siteConfig.schedule.saturdays}</span>
+            </div>
+          </div>
+
+          <div class="sede-dato">
+            <Icon name="phone" size={20} class="icono-oro" />
+            <div>
+              <strong>Central Telefónica Directa</strong>
+              <a href={`tel:${siteConfig.contact.phone.replace(/\s+/g, '')}`} class="sede-enlace-tel">
+                {siteConfig.contact.phone}
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Acciones Inferiores del Pabellón Sede -->
+        <div class="pabellon-sede__acciones">
+          <a
+            class="btn btn--linea-claro btn--bloque"
+            href={siteConfig.address.googleMapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Icon name="pin" size={16} />
+            <span>Cómo llegar en Google Maps</span>
+          </a>
+
+          <a
+            class="btn btn--oro btn--bloque"
+            href={waFastTrackUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Icon name="whatsapp" size={17} />
+            <span>WhatsApp Recepción Directa</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Columna 2: Pabellón de Solicitud de Evaluación Integral -->
+      <div class="pabellon-form-col reveal" style="transition-delay: 0.15s;">
+        <form class="formulario" id="reserva-form" method="POST" action="/gracias">
+          <div class="formulario__header">
+            <h3>Solicitud de Evaluación Integral</h3>
+            <p>Diagnóstico digital 3D sin costo de sorpresa y presupuesto médico por escrito.</p>
+          </div>
+
+          <fieldset class="formulario__seccion">
+            <legend class="sr-only">Tus datos personales</legend>
+            <div class="campo">
+              <label for="nombre">Nombre completo <span class="requerido" aria-hidden="true">*</span></label>
+              <input
+                type="text"
+                id="nombre"
+                name="nombre"
+                placeholder="Ej. Carolina Mendoza"
+                autocomplete="name"
+                required
+              />
+            </div>
+
+            <div class="campos-dos">
+              <div class="campo">
+                <label for="whatsapp">WhatsApp / Celular <span class="requerido" aria-hidden="true">*</span></label>
+                <input
+                  type="tel"
+                  id="whatsapp"
+                  name="whatsapp"
+                  placeholder="Ej. 987 654 321"
+                  autocomplete="tel"
+                  required
+                />
+              </div>
+              <div class="campo">
+                <label for="email">Correo electrónico <span class="requerido" aria-hidden="true">*</span></label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="carolina@ejemplo.pe"
+                  autocomplete="email"
+                  required
+                />
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="formulario__seccion">
+            <legend class="sr-only">Detalles de la cita</legend>
+            <div class="campos-dos">
+              <div class="campo">
+                <label for="tratamiento">Tratamiento de interés</label>
+                <select id="tratamiento" name="tratamiento">
+                  <option value="" selected disabled>Selecciona una opción</option>
+                  {treatments.map((t) => (
+                    <option value={t.id}>{t.title}</option>
+                  ))}
+                  <option value="evaluacion-general">Diagnóstico y chequeo general 3D</option>
+                </select>
+              </div>
+
+              <div class="campo">
+                <label for="horario">Preferencia de horario</label>
+                <select id="horario" name="horario">
+                  <option value="manana">Mañanas (09:00 - 13:00)</option>
+                  <option value="tarde" selected>Tardes (14:00 - 20:00)</option>
+                  <option value="sabados">Sábados (09:00 - 14:00)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="campo">
+              <label for="mensaje">¿Tienes alguna consulta o antecedente previo?</label>
+              <textarea
+                id="mensaje"
+                name="mensaje"
+                rows="2"
+                placeholder="Cuéntanos brevemente tu caso o preferencias..."
+              ></textarea>
+            </div>
+          </fieldset>
+
+          <div class="consentimiento">
+            <input type="checkbox" id="consentimiento" name="consentimiento" required />
+            <label for="consentimiento">
+              Acepto el tratamiento de mis datos personales según la <a href="/politica-privacidad" target="_blank">Ley N° 29733 de Protección de Datos Personales del Perú</a>.
+            </label>
+          </div>
+
+          <div class="formulario__acciones">
+            <button type="submit" class="btn btn--oro btn--bloque">
+              <Icon name="calendar" size={17} />
+              <span>Confirmar Solicitud de Cita</span>
+            </button>
+
+            <!-- Acceso Directo Alternativo por WhatsApp (Colores Nova Smile) -->
+            <div class="formulario__wa-alternativa">
+              <span class="formulario__wa-texto">¿Prefieres agendar en tiempo real sin formularios?</span>
+              <a
+                href={waFastTrackUrl}
+                target="_blank"
+                rel="noopener"
+                class="formulario__wa-link"
+              >
+                <Icon name="whatsapp" size={15} />
+                <span>Chatear por WhatsApp con Recepción (~10 min)</span>
+              </a>
+            </div>
+
+            <div class="formulario__garantia">
+              <Icon name="lock" size={13} />
+              <span>Tus datos están protegidos bajo secreto médico deontológico.</span>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Bloque Integral: Hub de Preguntas Frecuentes (FAQ) -->
+    <div class="faq-hub reveal" id="faqs">
+      <div class="faq-hub__header">
+        <div class="faq-hub__kicker">
+          <Icon name="sparkles" size={16} class="icono-oro" />
+          <span>Claridad & Tranquilidad Clínica</span>
+        </div>
+        <h3 class="faq-hub__titulo">Preguntas frecuentes antes de tu visita</h3>
+        <p class="faq-hub__sub">
+          Transparencia absoluta en dolor, presupuestos, tiempos y reembolsos EPS.
+        </p>
+
+        <!-- Filtros por Categoría -->
+        <div class="faq-filtros" role="tablist" aria-label="Filtrar preguntas frecuentes">
+          {categories.map((cat, i) => (
+            <button
+              type="button"
+              class:list={['faq-filtro-btn', { 'faq-filtro-btn--activo': i === 0 }]}
+              data-cat={cat.id}
+              role="tab"
+              aria-selected={i === 0 ? 'true' : 'false'}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Acordeón de FAQs Unificado y Compacto (Cero Espacio Desperdiciado) -->
+      <div class="faq-lista-wrap" id="faq-items-container">
+        {faqs.map((f, i) => (
+          <details
+            class="faq-card"
+            data-category={f.category}
+            name="faq-acordeon"
+            open={i === 0}
+          >
+            <summary class="faq-card__summary">
+              <div class="faq-card__pregunta-wrap">
+                <span class="faq-card__cat-tag">
+                  {f.category === 'dolor' && 'Confort & Anestesia'}
+                  {f.category === 'costos' && 'Presupuesto'}
+                  {f.category === 'seguros' && 'EPS & Seguros'}
+                  {f.category === 'tecnologia' && 'Digital 3D'}
+                  {f.category === 'general' && 'Clínica & Tiempos'}
+                </span>
+                <span class="faq-card__pregunta">{f.question}</span>
+              </div>
+              <span class="faq-card__chevron" aria-hidden="true">
+                <Icon name="chevron-down" size={17} />
+              </span>
+            </summary>
+            <div class="faq-card__body">
+              <p>{f.answer}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+
+      <!-- Banner de Concierge WhatsApp para Dudas Específicas -->
+      <div class="faq-concierge-banner">
+        <div class="faq-concierge-banner__info">
+          <div class="faq-concierge-banner__icono">
+            <Icon name="chat" size={22} />
+          </div>
+          <div>
+            <h4>¿Tienes una consulta específica sobre tu caso o presupuesto?</h4>
+            <p>Nuestro equipo médico y recepción de San Isidro responde con claridad y sin compromiso.</p>
+          </div>
+        </div>
+        <a
+          href={`https://wa.me/${siteConfig.contact.whatsappClean}?text=Hola,%20tengo%20una%20consulta%20especifica%20no%20listada%20en%20las%20preguntas%20frecuentes`}
+          target="_blank"
+          rel="noopener"
+          class="btn btn--oro faq-concierge-btn"
+        >
+          <Icon name="whatsapp" size={18} />
+          <span>Consultar duda médica por WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Filtro interactivo de categorías en el FAQ con auto-apertura inteligente
+  const filtroBtns = document.querySelectorAll<HTMLButtonElement>('.faq-filtro-btn');
+  const faqCards = document.querySelectorAll<HTMLDetailsElement>('.faq-card');
+
+  filtroBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const selectedCat = btn.dataset.cat;
+      if (!selectedCat) return;
+
+      filtroBtns.forEach((b) => {
+        b.classList.remove('faq-filtro-btn--activo');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('faq-filtro-btn--activo');
+      btn.setAttribute('aria-selected', 'true');
+
+      let firstVisibleFound = false;
+      faqCards.forEach((card) => {
+        const itemCat = card.dataset.category;
+        const matches = selectedCat === 'todos' ||
+          (selectedCat === 'costos' && (itemCat === 'costos' || itemCat === 'general')) ||
+          (itemCat === selectedCat);
+
+        if (matches) {
+          card.style.display = 'block';
+          if (!firstVisibleFound) {
+            card.open = true;
+            firstVisibleFound = true;
+          } else {
+            card.open = false;
+          }
+        } else {
+          card.style.display = 'none';
+          card.open = false;
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .contacto-seccion {
+    background: linear-gradient(160deg, #07192C 0%, var(--azul) 55%, #051424 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ancla-offset {
+    position: absolute;
+    top: -90px;
+    left: 0;
+  }
+
+  .contacto-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.25rem;
+    align-items: stretch;
+    margin-bottom: 2.75rem;
+  }
+
+  /* Pabellón Sede San Isidro (Izquierda) */
+  .pabellon-sede {
+    height: 100%;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(198, 161, 91, 0.3);
+    border-radius: var(--radio-lg);
+    padding: clamp(1.8rem, 3.5vw, 2.5rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.4rem;
+    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.5);
+  }
+
+  .pabellon-sede__header h3 {
+    font-size: 1.65rem;
+    color: var(--marfil);
+    margin: 0 0 0.3rem;
+  }
+
+  .pabellon-sede__header p {
+    font-size: 0.95rem;
+    color: #BAC9D8;
+    margin: 0;
+  }
+
+  .sede-foto-wrap {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radio-md);
+    overflow: hidden;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(198, 161, 91, 0.3);
+  }
+
+  .sede-foto {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .sede-foto-wrap:hover .sede-foto {
+    transform: scale(1.04);
+  }
+
+  .sede-chip {
+    position: absolute;
+    bottom: 0.85rem;
+    left: 0.85rem;
+    background: rgba(10, 37, 64, 0.94);
+    backdrop-filter: blur(8px);
+    color: var(--oro);
+    font-size: 0.82rem;
+    font-family: var(--f-acento);
+    font-weight: 600;
+    padding: 0.4rem 0.85rem;
+    border-radius: var(--radio-pill);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    border: 1px solid rgba(198, 161, 91, 0.35);
+  }
+
+  .sede-badge-acreditacion {
+    position: absolute;
+    top: 0.85rem;
+    right: 0.85rem;
+    background: rgba(10, 37, 64, 0.9);
+    backdrop-filter: blur(8px);
+    color: #F7F3EC;
+    font-size: 0.8rem;
+    font-family: var(--f-acento);
+    font-weight: 600;
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radio-pill);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    border: 1px solid rgba(198, 161, 91, 0.3);
+  }
+
+  .sede-datos {
+    display: flex;
+    flex-direction: column;
+    gap: 0.95rem;
+    background: rgba(255, 255, 255, 0.04);
+    padding: 1.2rem 1.4rem;
+    border-radius: var(--radio-md);
+    border: 1px solid rgba(198, 161, 91, 0.2);
+  }
+
+  .sede-dato {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+
+  .icono-oro {
+    color: var(--oro);
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+  }
+
+  .sede-dato strong {
+    display: block;
+    font-family: var(--f-acento);
+    font-size: 0.98rem;
+    color: var(--marfil);
+    margin-bottom: 0.15rem;
+  }
+
+  .sede-dato span {
+    display: block;
+    font-size: 0.92rem;
+    color: #BAC9D8;
+    line-height: 1.4;
+  }
+
+  .sede-enlace-tel {
+    color: #E2C48D;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color var(--trans-rapida);
+  }
+
+  .sede-enlace-tel:hover {
+    color: var(--marfil);
+    text-decoration: underline;
+  }
+
+  .sede-ref {
+    font-size: 0.84rem !important;
+    color: #8E9FAA !important;
+  }
+
+  .pabellon-sede__acciones {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  /* Pabellón Formulario (Derecha) */
+  .pabellon-form-col {
+    height: 100%;
+  }
+
+  .formulario {
+    height: 100%;
+    background: var(--marfil);
+    color: var(--carbon);
+    border-radius: var(--radio-lg);
+    padding: clamp(1.8rem, 3.5vw, 2.5rem);
+    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(198, 161, 91, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .formulario__header {
+    margin-bottom: 1.25rem;
+  }
+
+  .formulario__header h3 {
+    font-size: 1.65rem;
+    color: var(--azul);
+    margin: 0 0 0.3rem;
+  }
+
+  .formulario__header p {
+    font-size: 0.95rem;
+    color: var(--texto-suave);
+    margin: 0;
+  }
+
+  .formulario__seccion {
+    border: none;
+    padding: 0;
+    margin: 0 0 0.85rem;
+  }
+
+  .campo {
+    margin-bottom: 0.85rem;
+  }
+
+  .campo label {
+    display: block;
+    font-family: var(--f-acento);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--azul);
+    margin-bottom: 0.35rem;
+  }
+
+  .requerido {
+    color: #C64646;
+  }
+
+  .campo input,
+  .campo select,
+  .campo textarea {
+    width: 100%;
+    font: inherit;
+    font-size: 0.98rem;
+    color: var(--carbon);
+    padding: 0.75rem 0.95rem;
+    background: #FFFFFF;
+    border: 1.5px solid var(--piedra);
+    border-radius: var(--radio-sm);
+    transition: border-color var(--trans-rapida), box-shadow var(--trans-rapida);
+  }
+
+  .campo input:focus,
+  .campo select:focus,
+  .campo textarea:focus {
+    outline: none;
+    border-color: var(--turquesa);
+    box-shadow: 0 0 0 3px rgba(46, 196, 182, 0.2);
+  }
+
+  .campos-dos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem;
+  }
+
+  .consentimiento {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    margin-bottom: 1.15rem;
+    font-size: 0.86rem;
+    color: var(--texto-suave);
+    line-height: 1.45;
+  }
+
+  .consentimiento input {
+    width: 17px;
+    height: 17px;
+    margin-top: 0.15rem;
+    accent-color: var(--azul);
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  .consentimiento a {
+    color: var(--azul);
+    text-decoration: underline;
+  }
+
+  .formulario__acciones {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .formulario__wa-alternativa {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--piedra);
+    text-align: center;
+  }
+
+  .formulario__wa-texto {
+    font-size: 0.86rem;
+    color: var(--texto-suave);
+    font-family: var(--f-acento);
+  }
+
+  .formulario__wa-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: var(--azul);
+    font-family: var(--f-acento);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: underline;
+    transition: color var(--trans-rapida);
+  }
+
+  .formulario__wa-link:hover {
+    color: var(--oro);
+  }
+
+  .formulario__garantia {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    font-size: 0.84rem;
+    color: #7A8794;
+    text-align: center;
+  }
+
+  /* =========================================================
+     HUB DE PREGUNTAS FRECUENTES (FAQ)
+     ========================================================= */
+  .faq-hub {
+    margin-top: 1rem;
+    padding-top: 2.25rem;
+    border-top: 1px solid rgba(198, 161, 91, 0.2);
+  }
+
+  .faq-hub__header {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 1.6rem;
+  }
+
+  .faq-hub__kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: var(--f-acento);
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--oro);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.4rem;
+  }
+
+  .faq-hub__titulo {
+    font-size: clamp(1.75rem, 3.2vw, 2.3rem);
+    color: var(--marfil);
+    margin: 0 0 0.4rem;
+  }
+
+  .faq-hub__sub {
+    font-size: 1rem;
+    color: #BAC9D8;
+    margin: 0 0 1.25rem;
+  }
+
+  /* Filtros de Categoría */
+  .faq-filtros {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .faq-filtro-btn {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: #BAC9D8;
+    padding: 0.45rem 1.05rem;
+    border-radius: var(--radio-pill);
+    font-family: var(--f-acento);
+    font-size: 0.88rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--trans-rapida);
+    white-space: nowrap;
+  }
+
+  .faq-filtro-btn:hover {
+    background: rgba(198, 161, 91, 0.15);
+    color: var(--marfil);
+    border-color: var(--oro);
+  }
+
+  .faq-filtro-btn--activo {
+    background: var(--oro);
+    color: var(--azul);
+    border-color: var(--oro);
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(198, 161, 91, 0.35);
+  }
+
+  /* Acordeón de FAQs Compacto (Sin espacios vacíos) */
+  .faq-lista-wrap {
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .faq-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: var(--radio-md);
+    overflow: hidden;
+    transition: border-color var(--trans-media), background-color var(--trans-media), box-shadow var(--trans-media);
+  }
+
+  .faq-card:hover {
+    border-color: rgba(198, 161, 91, 0.35);
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .faq-card[open] {
+    border-color: rgba(198, 161, 91, 0.6);
+    background: rgba(10, 37, 64, 0.7);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  }
+
+  .faq-card__summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 1rem 1.35rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    user-select: none;
+  }
+
+  .faq-card__summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-card__pregunta-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .faq-card__cat-tag {
+    font-family: var(--f-acento);
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: var(--oro);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: rgba(198, 161, 91, 0.12);
+    padding: 0.25rem 0.65rem;
+    border-radius: 4px;
+    border: 1px solid rgba(198, 161, 91, 0.25);
+    flex-shrink: 0;
+  }
+
+  .faq-card__pregunta {
+    font-family: var(--f-acento);
+    font-size: 1.04rem;
+    font-weight: 600;
+    color: var(--marfil);
+    line-height: 1.35;
+  }
+
+  .faq-card__chevron {
+    color: var(--oro);
+    transition: transform var(--trans-rapida);
+    flex-shrink: 0;
+  }
+
+  .faq-card[open] .faq-card__chevron {
+    transform: rotate(180deg);
+  }
+
+  .faq-card__body {
+    padding: 0 1.35rem 1.15rem;
+    animation: fadeInFaq 0.2s ease-out;
+  }
+
+  @keyframes fadeInFaq {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .faq-card__body p {
+    font-size: 0.96rem;
+    color: #C8D5E4;
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* Banner de Concierge FAQ */
+  .faq-concierge-banner {
+    max-width: 860px;
+    margin: 1.5rem auto 0;
+    padding: 1.1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(198, 161, 91, 0.3);
+    border-radius: var(--radio-lg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+  }
+
+  .faq-concierge-banner__info {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+  }
+
+  .faq-concierge-banner__icono {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(198, 161, 91, 0.15);
+    color: var(--oro);
+    border: 1px solid rgba(198, 161, 91, 0.3);
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+  }
+
+  .faq-concierge-banner__info h4 {
+    font-family: var(--f-acento);
+    font-size: 1.08rem;
+    color: var(--marfil);
+    margin: 0 0 0.25rem;
+  }
+
+  .faq-concierge-banner__info p {
+    font-size: 0.92rem;
+    color: #BAC9D8;
+    margin: 0;
+  }
+
+  .faq-concierge-btn {
+    flex-shrink: 0;
+  }
+
+  /* Responsivo */
+  @media (max-width: 980px) {
+    .contacto-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .faq-concierge-banner {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .faq-concierge-btn {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 580px) {
+    .campos-dos {
+      grid-template-columns: 1fr;
+    }
+    .formulario {
+      padding: 1.5rem;
+    }
+    .faq-hub {
+      padding-top: 2.5rem;
+    }
+  }
+</style>

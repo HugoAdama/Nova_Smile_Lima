@@ -1,0 +1,278 @@
+---
+import Icon from '../common/Icon.astro';
+import SectionHeader from '../common/SectionHeader.astro';
+
+const avoidList = [
+  'Que te apuren en la consulta por saturación de agenda',
+  'Enterarte del precio real o cargos extra al final de la cita',
+  'Sentirte un número más en un consultorio masivo e impersonal',
+  'Resultados artificiales, dientes planos o blancos fluorescentes'
+];
+
+const offerList = [
+  'Sin prisas: bloques de tiempo holgados para escucharte con calma',
+  'Sin sorpresas: presupuesto cerrado y pasos definidos desde el inicio',
+  'Atención personalizada con el mismo especialista de principio a fin',
+  'Estética biomimética natural que armoniza con tus facciones'
+];
+---
+
+<section class="seccion" id="para-quien" aria-labelledby="contraste-titulo">
+  <div class="contenedor">
+    <div class="reveal">
+      <SectionHeader
+        kicker="Enfoque de Valor"
+        title="¿Buscas una clínica que no se sienta como una clínica?"
+        description="Cambiamos la ansiedad y la incertidumbre por claridad, serenidad y tecnología digital de alta precisión."
+      />
+    </div>
+
+    <div class="contraste">
+      <div class="contraste__col contraste__col--antes reveal" style="transition-delay: 0.1s;">
+        <div class="contraste__col-header">
+          <div class="contraste__col-icono contraste__col-icono--x">
+            <Icon name="x" size={20} />
+          </div>
+          <h3>Lo que no quieres vivir</h3>
+        </div>
+        <ul>
+          {avoidList.map((item) => (
+            <li class="contraste__item-antes">
+              <Icon name="x" size={20} class="icono-negativo" />
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="contraste__col contraste__col--ahora reveal" style="transition-delay: 0.2s;">
+        <div class="contraste__col-header">
+          <div class="contraste__col-icono contraste__col-icono--check">
+            <Icon name="check" size={20} />
+          </div>
+          <h3>Lo que encuentras aquí</h3>
+        </div>
+        <ul>
+          {offerList.map((item) => (
+            <li class="contraste__item-ahora">
+              <div class="check-wrap">
+                <Icon name="check" size={18} class="icono-positivo" />
+              </div>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <div class="para-quien__cierre reveal" style="transition-delay: 0.25s;">
+      <div class="para-quien__lema">
+        <Icon name="sparkles" size={28} class="icono-oro" />
+        <p>Estética natural, diseñada exclusivamente para ti.</p>
+      </div>
+      <a class="btn btn--linea" href="#tratamientos">
+        <span>Explorar tratamientos & soluciones</span>
+        <Icon name="arrow-right" size={16} />
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contraste {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(1.5rem, 3.5vw, 2.5rem);
+  }
+
+  .contraste__col {
+    padding: clamp(2rem, 3.8vw, 3rem);
+    border-radius: var(--radio-lg);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform var(--trans-media), box-shadow var(--trans-media), border-color var(--trans-media);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contraste__col:hover {
+    transform: translateY(-4px);
+  }
+
+  .contraste__col-header {
+    display: flex;
+    align-items: center;
+    gap: 0.95rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .contraste__col-icono {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    transition: transform var(--trans-rapida);
+  }
+
+  .contraste__col:hover .contraste__col-icono {
+    transform: scale(1.1) rotate(5deg);
+  }
+
+  .contraste__col-icono--x {
+    background: rgba(198, 70, 70, 0.12);
+    color: #C64646;
+  }
+
+  .contraste__col-icono--check {
+    background: rgba(46, 196, 182, 0.22);
+    color: var(--turquesa);
+    box-shadow: 0 0 16px rgba(46, 196, 182, 0.35);
+  }
+
+  .contraste__col h3 {
+    margin: 0;
+    font-size: 1.6rem;
+  }
+
+  .contraste__col--antes {
+    background: #FFFFFF;
+    border: 1.5px dashed var(--piedra);
+  }
+
+  .contraste__col--antes:hover {
+    border-color: #B5AFA6;
+    box-shadow: var(--sombra-md);
+  }
+
+  .contraste__col--ahora {
+    background: linear-gradient(155deg, var(--azul-suave) 0%, var(--azul) 60%, #061626 100%);
+    color: var(--marfil);
+    box-shadow: var(--sombra-lg), 0 0 0 1px rgba(198, 161, 91, 0.2);
+  }
+
+  .contraste__col--ahora:hover {
+    box-shadow: var(--sombra-lg), 0 0 30px rgba(46, 196, 182, 0.25);
+  }
+
+  .contraste__col--ahora h3 {
+    color: var(--oro);
+  }
+
+  .contraste__col ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .contraste__col li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.95rem;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    transition: transform var(--trans-rapida);
+  }
+
+  .contraste__item-ahora:hover {
+    transform: translateX(4px);
+  }
+
+  .check-wrap {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: rgba(46, 196, 182, 0.15);
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+    transition: background-color var(--trans-rapida), transform var(--trans-rapida);
+  }
+
+  .contraste__item-ahora:hover .check-wrap {
+    background: var(--turquesa);
+    transform: scale(1.15);
+  }
+
+  .contraste__item-ahora:hover .icono-positivo {
+    color: var(--azul);
+  }
+
+  .contraste__col--antes li {
+    color: var(--texto-suave);
+  }
+
+  .contraste__col--ahora li {
+    color: #E2EAF2;
+  }
+
+  .icono-negativo {
+    color: #A39D95;
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+  }
+
+  .icono-positivo {
+    color: var(--turquesa);
+    flex-shrink: 0;
+    transition: color var(--trans-rapida);
+  }
+
+  .para-quien__cierre {
+    margin-top: 3.5rem;
+    padding: 2rem 2.4rem;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--piedra);
+    border-radius: var(--radio-lg);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem 2rem;
+    box-shadow: var(--sombra-sm);
+    transition: transform var(--trans-media), box-shadow var(--trans-media), border-color var(--trans-media);
+  }
+
+  .para-quien__cierre:hover {
+    transform: translateY(-2px);
+    border-color: rgba(198, 161, 91, 0.4);
+    box-shadow: var(--sombra-md);
+  }
+
+  .para-quien__lema {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .icono-oro {
+    color: var(--oro);
+    flex-shrink: 0;
+    animation: shineGlint 5s ease-in-out infinite;
+  }
+
+  .para-quien__lema p {
+    font-family: var(--f-titulo);
+    font-size: clamp(1.4rem, 2.5vw, 1.95rem);
+    color: var(--azul);
+    margin: 0;
+    font-weight: 600;
+  }
+
+  @media (max-width: 860px) {
+    .contraste {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .para-quien__cierre {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

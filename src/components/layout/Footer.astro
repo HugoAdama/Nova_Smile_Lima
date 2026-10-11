@@ -1,0 +1,534 @@
+---
+import Logo from '../common/Logo.astro';
+import Icon from '../common/Icon.astro';
+import { siteConfig } from '../../data/site';
+import { footerClinicLinks, footerLegalLinks } from '../../data/navigation';
+---
+
+<footer class="footer" id="pie-pagina" aria-label="Pie de página de Nova Smile Lima">
+  <div class="contenedor">
+    <div class="footer__rejilla">
+      <!-- Columna 1: Marca & Autoridad Médica -->
+      <div class="footer__marca">
+        <Logo variant="light" />
+        <p class="footer__sub">
+          Odontología digital boutique en el corazón de San Isidro. Un enfoque que fusiona tecnología 3D de micras, serenidad sensorial y una estética de naturalidad perdurable.
+        </p>
+
+        <div class="footer__colegiatura">
+          <Icon name="medal" size={17} class="footer__icono-oro" />
+          <span>Dirección Médica Colegiada · COP 28419 · San Isidro</span>
+        </div>
+
+        <div class="footer__sociales" aria-label="Redes sociales oficiales">
+          <a
+            href={siteConfig.social.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer__social-btn"
+            aria-label="Instagram de Nova Smile Lima"
+          >
+            <Icon name="instagram" size={17} />
+          </a>
+          <a
+            href={siteConfig.social.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer__social-btn"
+            aria-label="LinkedIn de Nova Smile Lima"
+          >
+            <Icon name="linkedin" size={17} />
+          </a>
+          <a
+            href={siteConfig.social.facebook}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer__social-btn"
+            aria-label="Facebook de Nova Smile Lima"
+          >
+            <Icon name="facebook" size={17} />
+          </a>
+          <a
+            href={`https://wa.me/${siteConfig.contact.whatsappClean}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer__social-btn footer__social-btn--wa"
+            aria-label="WhatsApp Concierge directo"
+          >
+            <Icon name="whatsapp" size={17} />
+          </a>
+        </div>
+      </div>
+
+      <!-- Columna 2: Clínica & Tratamientos -->
+      <div class="footer__col">
+        <h3 class="footer__titulo-col">Especialidades</h3>
+        <ul class="footer__enlaces-lista">
+          {footerClinicLinks.map((link) => (
+            <li>
+              <a href={link.href}>
+                <Icon name="arrow-right" size={13} class="footer__icono-flecha" />
+                <span>{link.label}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Columna 3: Sede San Isidro & Horarios -->
+      <div class="footer__col">
+        <h3 class="footer__titulo-col">Sede & Horarios</h3>
+        <ul class="footer__contacto-lista">
+          <li>
+            <Icon name="pin" size={18} class="footer__icono-oro" />
+            <div>
+              <strong>Sede San Isidro</strong>
+              <span>{siteConfig.address.street}</span>
+              <small class="footer__muted">{siteConfig.address.reference}</small>
+            </div>
+          </li>
+          <li>
+            <Icon name="clock" size={18} class="footer__icono-oro" />
+            <div>
+              <strong>Horarios de Atención</strong>
+              <span>{siteConfig.schedule.weekdays}</span>
+              <small class="footer__muted">{siteConfig.schedule.saturdays}</small>
+            </div>
+          </li>
+          <li>
+            <Icon name="phone" size={18} class="footer__icono-oro" />
+            <div>
+              <strong>Central Telefónica</strong>
+              <a href={`tel:${siteConfig.contact.phone.replace(/\s+/g, '')}`}>
+                {siteConfig.contact.phone}
+              </a>
+            </div>
+          </li>
+          <li>
+            <Icon name="whatsapp" size={18} class="footer__icono-oro" />
+            <div>
+              <strong>WhatsApp Directo</strong>
+              <a href={`https://wa.me/${siteConfig.contact.whatsappClean}`} target="_blank" rel="noopener">
+                {siteConfig.contact.whatsapp}
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Columna 4: Acreditación & Ética Legal -->
+      <div class="footer__col">
+        <h3 class="footer__titulo-col">Ética & Confianza</h3>
+
+        <div class="footer__sello-etico">
+          <div class="footer__sello-header">
+            <Icon name="shield" size={15} class="footer__icono-oro" />
+            <strong>Compromiso Deontológico</strong>
+          </div>
+          <p>
+            Publicidad médica veraz, sin promesas engañosas. Diagnósticos basados en evidencia y consentimiento informado estricto.
+          </p>
+        </div>
+
+        <ul class="footer__legal-destacado">
+          <li>
+            <a href="/libro-de-reclamaciones" class="footer__legal-chip">
+              <Icon name="book" size={14} class="footer__icono-oro" />
+              <span>Libro de Reclamaciones Virtual</span>
+            </a>
+          </li>
+          <li>
+            <a href="/politica-privacidad" class="footer__legal-chip">
+              <Icon name="shield" size={13} class="footer__icono-oro" />
+              <span>Protección de Datos (Ley N° 29733)</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Barra Inferior de Derechos, Crédito & Enlaces Legales -->
+    <div class="footer__legal">
+      <div class="footer__legal-izq">
+        <p class="footer__copy">
+          &copy; 2026 {siteConfig.name} · San Isidro, Lima · COP 28419 · RUC 20608945231
+        </p>
+        <p class="footer__credito">
+          Landing Page desarrollada por <strong class="footer__credito-autor">Hugo Adama</strong>
+        </p>
+      </div>
+
+      <div class="footer__legal-der">
+        <a href="/politica-privacidad">Privacidad</a>
+        <span class="footer__separador">·</span>
+        <a href="/politica-cookies">Cookies</a>
+        <span class="footer__separador">·</span>
+        <a href="/libro-de-reclamaciones" class="footer__reclamaciones">
+          <Icon name="book" size={14} />
+          <span>Libro de Reclamaciones</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: linear-gradient(180deg, #07172A 0%, var(--azul) 40%, #05101E 100%);
+    color: #C9D3DE;
+    padding-top: 3.5rem;
+    padding-bottom: 2.5rem; /* Ajustado para eliminar vacíos innecesarios */
+    border-top: 1px solid rgba(198, 161, 91, 0.25);
+    position: relative;
+    z-index: 10;
+  }
+
+  .footer__rejilla {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr 1.25fr 1.15fr;
+    gap: clamp(1.5rem, 3.2vw, 3rem);
+    align-items: start;
+  }
+
+  /* Columna Marca */
+  .footer__marca p.footer__sub {
+    margin-top: 1rem;
+    font-size: 0.98rem;
+    line-height: 1.6;
+    color: #BAC7D5;
+    max-width: 36ch;
+  }
+
+  .footer__colegiatura {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.95rem;
+    padding: 0.4rem 0.85rem;
+    background: rgba(198, 161, 91, 0.08);
+    border: 1px solid rgba(198, 161, 91, 0.25);
+    border-radius: var(--radio-sm);
+    font-size: 0.88rem;
+    color: #E2C48D;
+    font-family: var(--f-acento);
+    font-weight: 500;
+  }
+
+  .footer__sociales {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin-top: 1.1rem;
+  }
+
+  .footer__social-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #BAC7D5;
+    display: grid;
+    place-items: center;
+    transition: all var(--trans-rapida);
+    text-decoration: none;
+  }
+
+  .footer__social-btn:hover {
+    background: var(--oro);
+    color: var(--azul);
+    border-color: var(--oro);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(198, 161, 91, 0.35);
+  }
+
+  .footer__social-btn--wa:hover {
+    background: var(--oro);
+    color: var(--azul);
+    border-color: var(--oro);
+  }
+
+  /* Títulos de Columnas */
+  .footer__titulo-col {
+    font-family: var(--f-acento);
+    font-weight: 600;
+    font-size: 0.94rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--oro);
+    margin: 0 0 1.15rem;
+    position: relative;
+    padding-bottom: 0.45rem;
+  }
+
+  .footer__titulo-col::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 22px;
+    height: 2px;
+    background: var(--oro);
+    opacity: 0.6;
+  }
+
+  /* Listas de Enlaces */
+  .footer__enlaces-lista {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .footer__enlaces-lista a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    color: #BAC7D5;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: color var(--trans-rapida), transform var(--trans-rapida);
+  }
+
+  .footer__icono-flecha {
+    color: var(--oro);
+    opacity: 0.65;
+    transition: transform var(--trans-rapida), opacity var(--trans-rapida);
+    flex-shrink: 0;
+  }
+
+  .footer__enlaces-lista a:hover {
+    color: var(--marfil);
+    transform: translateX(4px);
+  }
+
+  .footer__enlaces-lista a:hover .footer__icono-flecha {
+    opacity: 1;
+    transform: translateX(2px);
+  }
+
+  /* Lista de Contacto */
+  .footer__contacto-lista {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.95rem;
+  }
+
+  .footer__contacto-lista li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    font-size: 0.92rem;
+  }
+
+  .footer__contacto-lista strong {
+    display: block;
+    color: var(--marfil);
+    font-family: var(--f-acento);
+    font-size: 0.92rem;
+    margin-bottom: 0.1rem;
+  }
+
+  .footer__contacto-lista span {
+    display: block;
+    color: #BAC7D5;
+    line-height: 1.35;
+  }
+
+  .footer__contacto-lista a {
+    color: #E2C48D;
+    text-decoration: none;
+    transition: color var(--trans-rapida);
+  }
+
+  .footer__contacto-lista a:hover {
+    color: var(--marfil);
+    text-decoration: underline;
+  }
+
+  .footer__muted {
+    display: block;
+    font-size: 0.82rem;
+    color: #8E9FAA;
+    margin-top: 0.1rem;
+  }
+
+  .footer__icono-oro {
+    color: var(--oro);
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+  }
+
+  /* Sello Ético & Legal */
+  .footer__sello-etico {
+    padding: 0.85rem 1rem;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: var(--radio-md);
+    border: 1px solid rgba(198, 161, 91, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .footer__sello-header {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .footer__sello-header strong {
+    font-family: var(--f-acento);
+    font-size: 0.86rem;
+    color: #E2C48D;
+    font-weight: 600;
+  }
+
+  .footer__sello-etico p {
+    font-size: 0.84rem;
+    line-height: 1.45;
+    margin: 0;
+    color: #9EAFBF;
+  }
+
+  .footer__legal-destacado {
+    list-style: none;
+    padding: 0;
+    margin: 0.95rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .footer__legal-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.5rem 0.8rem;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(198, 161, 91, 0.2);
+    border-radius: var(--radio-sm);
+    color: #BAC7D5;
+    font-size: 0.86rem;
+    text-decoration: none;
+    transition: all var(--trans-rapida);
+  }
+
+  .footer__legal-chip:hover {
+    background: rgba(198, 161, 91, 0.12);
+    border-color: rgba(198, 161, 91, 0.45);
+    color: var(--marfil);
+    transform: translateX(3px);
+  }
+
+  /* Barra Legal Inferior Optimizada */
+  .footer__legal {
+    margin-top: 2.75rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+    font-size: 0.88rem;
+    color: #8E9FAA;
+    /* Margen de seguridad calibrado para el FAB en escritorio */
+    padding-right: clamp(1rem, 16vw, 13rem);
+  }
+
+  .footer__legal-izq {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .footer__copy {
+    margin: 0;
+    color: #BAC7D5;
+    font-size: 0.88rem;
+    line-height: 1.4;
+  }
+
+  .footer__credito {
+    margin: 0;
+    font-size: 0.84rem;
+    color: #8E9FAA;
+    font-family: var(--f-acento);
+  }
+
+  .footer__credito-autor {
+    color: var(--oro);
+    font-weight: 600;
+  }
+
+  .footer__legal-der {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .footer__legal-der a {
+    color: #BAC7D5;
+    text-decoration: none;
+    font-size: 0.82rem;
+    transition: color var(--trans-rapida);
+  }
+
+  .footer__legal-der a:hover {
+    color: var(--oro);
+    text-decoration: underline;
+  }
+
+  .footer__separador {
+    color: rgba(255, 255, 255, 0.25);
+    font-size: 0.75rem;
+  }
+
+  .footer__reclamaciones {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: #E2C48D !important;
+  }
+
+  /* Responsivo */
+  @media (max-width: 1040px) {
+    .footer__rejilla {
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem 2rem;
+    }
+    .footer__marca {
+      grid-column: 1 / -1;
+      max-width: 600px;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .footer {
+      padding-top: 2.5rem;
+      padding-bottom: 5.5rem; /* Margen para el botón flotante en móviles */
+    }
+
+    .footer__rejilla {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .footer__legal {
+      padding-right: 0;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.85rem;
+    }
+
+    .footer__legal-der {
+      flex-wrap: wrap;
+      gap: 0.5rem 0.8rem;
+    }
+  }
+</style>
