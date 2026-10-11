@@ -48,7 +48,7 @@ El sitio emplea 3 familias tipográficas complementarias cargadas desde Google F
 
 ## 3. Política Estricta "Zero Emojis"
 
-> ⚠️ **REGLA MANDATORIA:** Queda terminantemente prohibido el uso de emojis (tales como ✨, 🦷, 📍, 📞, 📅, ⭐, etc.) en cualquier parte del código fuente, textos de datos, atributos HTML o etiquetas de accesibilidad.
+> **REGLA MANDATORIA:** Queda terminantemente prohibido el uso de emojis en cualquier parte del código fuente, textos de datos, atributos HTML, documentación o etiquetas de accesibilidad.
 
 - **Razón:** Los emojis desentonan con la estética de una clínica boutique de alta gama, lucen inconsistentes entre plataformas (iOS, Android, Windows) y degradan la percepción de autoridad clínica.
 - **Solución:** Utilizar siempre el componente [`<Icon name="..." />`](file:///e:/NOVA_SMILE_LIMA/src/components/common/Icon.astro), el cual renderiza trazados vectoriales SVG limpios y consistentes en color corporativo.

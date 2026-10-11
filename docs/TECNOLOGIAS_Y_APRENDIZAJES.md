@@ -35,7 +35,7 @@ A lo largo del desarrollo y refinamiento de la plataforma se enfrentaron diverso
 ---
 
 ### Aprendizaje 2: Filosofía "Zero Emojis" para Identidad de Lujo
-- **El Reto:** Los emojis tradicionales de los sistemas operativos (🦷, ✨, 📍, ⭐, 📞) varían según el dispositivo (iOS, Android, Windows), pierden definición en pantallas oscuras y transmiten una imagen informal propia de aplicaciones de mensajería.
+- **El Reto:** Los emojis de los sistemas operativos varían según el dispositivo (iOS, Android, Windows), pierden definición en pantallas oscuras y transmiten una imagen informal propia de aplicaciones de mensajería.
 - **Causa Raíz:** Inconsistencia de renderizado y degradación de la identidad visual de una clínica odontológica de alta gama en San Isidro.
 - **Lección & Solución:**
   - Se erradicaron todos los emojis del código fuente.

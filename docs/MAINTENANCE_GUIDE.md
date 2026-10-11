@@ -7,7 +7,7 @@ Esta guía detalla el procedimiento paso a paso para realizar las tareas de mant
 ## 1. Actualización de Datos de la Clínica
 
 Toda la información institucional está centralizada en:
-📁 **[`src/data/site.ts`](file:///e:/NOVA_SMILE_LIMA/src/data/site.ts)**
+**[`src/data/site.ts`](file:///e:/NOVA_SMILE_LIMA/src/data/site.ts)**
 
 ```typescript
 export const siteConfig = {
@@ -32,7 +32,7 @@ export const siteConfig = {
 ## 2. Gestión del Equipo Médico
 
 Ubicación:
-📁 **[`src/data/team.ts`](file:///e:/NOVA_SMILE_LIMA/src/data/team.ts)**
+**[`src/data/team.ts`](file:///e:/NOVA_SMILE_LIMA/src/data/team.ts)**
 
 Para agregar o modificar un especialista:
 ```typescript
@@ -53,7 +53,7 @@ Para agregar o modificar un especialista:
 ## 3. Gestión de Tratamientos y Fichas Técnicas
 
 Ubicación:
-📁 **[`src/data/treatments.ts`](file:///e:/NOVA_SMILE_LIMA/src/data/treatments.ts)**
+**[`src/data/treatments.ts`](file:///e:/NOVA_SMILE_LIMA/src/data/treatments.ts)**
 
 Cada tratamiento contiene tanto la descripción comercial como las especificaciones médicas:
 ```typescript
@@ -78,7 +78,7 @@ Cada tratamiento contiene tanto la descripción comercial como las especificacio
 ## 4. Gestión de Testimonios Reales
 
 Ubicación:
-📁 **[`src/data/testimonials.ts`](file:///e:/NOVA_SMILE_LIMA/src/data/testimonials.ts)**
+**[`src/data/testimonials.ts`](file:///e:/NOVA_SMILE_LIMA/src/data/testimonials.ts)**
 
 ```typescript
 {
@@ -121,7 +121,7 @@ Editar [`src/components/common/Icon.astro`](file:///e:/NOVA_SMILE_LIMA/src/compo
 ## 6. Acordeón de Preguntas Frecuentes (FAQs)
 
 Ubicación:
-📁 **[`src/data/faqs.ts`](file:///e:/NOVA_SMILE_LIMA/src/data/faqs.ts)**
+**[`src/data/faqs.ts`](file:///e:/NOVA_SMILE_LIMA/src/data/faqs.ts)**
 
 Para agregar una nueva pregunta:
 ```typescript

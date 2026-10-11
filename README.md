@@ -3,7 +3,7 @@
 > [!NOTE]
 > **Proyecto Demo Funcional:** Esta plataforma es una **demostración funcional y prototipo interactivo de alta fidelidad** diseñado para exhibir arquitectura web moderna, rendimiento estático y experiencia de usuario (UX/UI) en el sector de salud boutique. Los formularios de agendamiento, el asistente Concierge, el libro de reclamaciones y las interacciones son 100% operativos a nivel de interfaz de usuario con fines demostrativos.
 > 
-> 🌐 **Demo en vivo (GitHub Pages):** [https://hugoadama.github.io/Nova_Smile_Lima/](https://hugoadama.github.io/Nova_Smile_Lima/)
+> **Demo en vivo (GitHub Pages):** [https://hugoadama.github.io/Nova_Smile_Lima/](https://hugoadama.github.io/Nova_Smile_Lima/)
 
 Sitio web corporativo y plataforma de captación de pacientes para **Nova Smile Lima**, concepto de clínica odontológica boutique en San Isidro, Lima, Perú.
 
@@ -11,7 +11,7 @@ Desarrollado con **Astro 7.x** (`^7.3.8`), TypeScript estricto y CSS nativo de a
 
 ---
 
-## 📚 Documentación Técnica & Mantenimiento
+## Documentación Técnica & Mantenimiento
 
 Toda la documentación arquitectónica, guías de estilo y manuales operativos se encuentran organizados en la carpeta **[`docs/`](./docs/README.md)**:
 
@@ -33,7 +33,7 @@ Toda la documentación arquitectónica, guías de estilo y manuales operativos s
 
 ---
 
-## 🚀 Inicio Rápido
+## Inicio Rápido
 
 ### Instalación de dependencias:
 ```bash
@@ -55,7 +55,7 @@ npm run build
 
 ---
 
-## ⚖️ Marco Legal & Cumplimiento Normativo
+## Marco Legal & Cumplimiento Normativo
 - **Ley N° 29733:** Protección de Datos Personales del Perú.
 - **Colegio Odontológico del Perú (COP):** Respeto a los códigos deontológicos de publicidad médica veraz y acreditaciones profesionales (COP / RNE).
 - **Indecopi:** Implementación del Libro de Reclamaciones Virtual en [`/libro-de-reclamaciones`](./src/pages/libro-de-reclamaciones.astro).
