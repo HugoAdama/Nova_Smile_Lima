@@ -1,6 +1,11 @@
 # Nova Smile Lima — Clínica Dental Boutique
 
-Sitio web corporativo y plataforma de captación de pacientes para **Nova Smile Lima**, clínica odontológica boutique ubicada en San Isidro, Lima, Perú.
+> [!NOTE]
+> **Proyecto Demo Funcional:** Esta plataforma es una **demostración funcional y prototipo interactivo de alta fidelidad** diseñado para exhibir arquitectura web moderna, rendimiento estático y experiencia de usuario (UX/UI) en el sector de salud boutique. Los formularios de agendamiento, el asistente Concierge, el libro de reclamaciones y las interacciones son 100% operativos a nivel de interfaz de usuario con fines demostrativos.
+> 
+> 🌐 **Demo en vivo (GitHub Pages):** [https://hugoadama.github.io/Nova_Smile_Lima/](https://hugoadama.github.io/Nova_Smile_Lima/)
+
+Sitio web corporativo y plataforma de captación de pacientes para **Nova Smile Lima**, concepto de clínica odontológica boutique en San Isidro, Lima, Perú.
 
 Desarrollado con **Astro 7.x** (`^7.3.8`), TypeScript estricto y CSS nativo de alta gama sin sobrecarga de librerías en tiempo de ejecución.
 
